@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cd7af3e5-498e-43c7-900b-f02bbc772343" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="CartController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/CartController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CartServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/serviceImpl/CartServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="503">
+              <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="generatorConfig.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="800">
+              <caret line="32" column="25" lean-forward="true" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddressController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/AddressController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="443">
+              <caret line="21" column="39" lean-forward="true" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddressService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/service/AddressService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="11" column="54" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="54" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddressServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/serviceImpl/AddressServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="19" column="25" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Address.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/pojo/Address.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+              <folding>
+                <element signature="e#315#316#0" expanded="true" />
+                <element signature="e#340#341#0" expanded="true" />
+                <element signature="e#377#378#0" expanded="true" />
+                <element signature="e#405#406#0" expanded="true" />
+                <element signature="e#439#440#0" expanded="true" />
+                <element signature="e#468#469#0" expanded="true" />
+                <element signature="e#513#514#0" expanded="true" />
+                <element signature="e#549#550#0" expanded="true" />
+                <element signature="e#580#581#0" expanded="true" />
+                <element signature="e#607#608#0" expanded="true" />
+                <element signature="e#647#648#0" expanded="true" />
+                <element signature="e#708#709#0" expanded="true" />
+                <element signature="e#740#741#0" expanded="true" />
+                <element signature="e#768#769#0" expanded="true" />
+                <element signature="e#810#811#0" expanded="true" />
+                <element signature="e#874#875#0" expanded="true" />
+                <element signature="e#908#909#0" expanded="true" />
+                <element signature="e#938#939#0" expanded="true" />
+                <element signature="e#984#985#0" expanded="true" />
+                <element signature="e#1054#1055#0" expanded="true" />
+                <element signature="e#1094#1095#0" expanded="true" />
+                <element signature="e#1130#1131#0" expanded="true" />
+                <element signature="e#1313#1314#0" expanded="true" />
+                <element signature="e#1346#1347#0" expanded="true" />
+                <element signature="e#1398#1399#0" expanded="true" />
+                <element signature="e#1477#1478#0" expanded="true" />
+                <element signature="e#1514#1515#0" expanded="true" />
+                <element signature="e#1547#1548#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddressMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/dao/AddressMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CartService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/service/CartService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="jsf" />
+        <option value="Jsp File" />
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>AuthenticationManager</find>
+      <find>select</find>
+      <find>user</find>
+      <find>result</find>
+      <find>mapper</find>
+      <find>selec</find>
+      <find>selectByExample</find>
+      <find>ADMIN</find>
+      <find>css/bootstrap.min.css</find>
+      <find>BaseResultMap</find>
+      <find>Created by</find>
+      <find>resultMap</find>
+      <find>updateByPrimaryKey</find>
+      <find>Using generated</find>
+    </findStrings>
+    <dirStrings>
+      <dir>D:\server\repository\org\springframework\security\spring-security-web\5.0.5.RELEASE\spring-security-web-5.0.5.RELEASE.jar</dir>
+      <dir>D:\IdeaProjects\ElectronicBusinessSystem\src\main\java</dir>
+      <dir>D:\IdeaProjects\ElectronicBusinessSystem</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/dao/NoticeMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/dao/OrderitemMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/dao/OrdersMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/dao/ProductsMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/dao/RoleMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/dao/RoleUserMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/service/Impl/GiftServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/service/Impl/CategoryServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/Impl/ProductSeviceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/controller/CategoryController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/controller/ProductController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/service/ProductSevice.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/CategoryMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/model/CategoryModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/dao/ItemMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/dao/CategoryMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/service/CategoryService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/Impl/CategoryServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/Impl/ItemSeviceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/controller/panel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/model/PanelModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/dao/PanelMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/controller/PanelContentController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/PanelContentMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/dao/PanelContentMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/service/PanelService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/Impl/PanelServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/controller/PanelController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/security/config/JwtConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/security/config/JwtUsernameAndPasswordAuthenticationFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/security/ConvertServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/security/config/SecurityConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/security/SecurityUserDetailsService.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/Impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/pojo/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/Impl/CartServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/dao/ItemCartMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/service/CartService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/controller/CartController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/service/ItemSevice.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/serviceImpl/ItemSeviceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/controller/ItemController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/serviceImpl/CartServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/service/AddressService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/serviceImpl/AddressServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/dao/AddressMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hlq/course/controller/AddressController.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\server\repository" />
+        <option name="mavenHome" value="C:/Program Files/apache-maven-3.5.0-bin/apache-maven-3.5.0" />
+        <option name="userSettingsFile" value="C:\Program Files\apache-maven-3.5.0-bin\apache-maven-3.5.0\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="ElectronicBusinessSystem" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="ElectronicBusinessSystem" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="ElectronicBusinessSystem" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="ElectronicBusinessSystem" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+          <item name="mybatis-generator" type="36feed69:MavenProjectsStructure$PluginNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="887" />
+    <option name="y" value="2" />
+    <option name="width" value="1265" />
+    <option name="height" value="1024" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <hideEmptyPackages ProjectPane="true" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="course" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="course" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="course" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="course" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="course" type="462c0819:PsiDirectoryNode" />
+              <item name="pojo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="course" type="462c0819:PsiDirectoryNode" />
+              <item name="security" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="course" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="course" type="462c0819:PsiDirectoryNode" />
+              <item name="serviceImpl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ElectronicBusinessSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ElectronicBusinessSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="last_opened_file_path" value="D:/A10-master/A10" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="C:/Program Files/nodejs/node" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Facets" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.45057473" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IdeaProjects\ElectronicBusinessSystem\src\main\java\com\hlq\course\security" />
+      <recent name="D:\IdeaProjects\ElectronicBusinessSystem\src\main\resources" />
+      <recent name="D:\IdeaProjects\ElectronicBusinessSystem\src\main\resources\static\css" />
+      <recent name="D:\IdeaProjects\ElectronicBusinessSystem\src\main\resources\static" />
+      <recent name="D:\IdeaProjects\ElectronicBusinessSystem\src\main\webapp\WEB-INF" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.hlq.course.security.config" />
+      <recent name="com.hlq.course.common" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\IdeaProjects\ElectronicBusinessSystem\src\main\webapp\WEB-INF" />
+      <recent name="D:\IdeaProjects\ElectronicBusinessSystem\src\main\webapp" />
+      <recent name="D:\IdeaProjects\ElectronicBusinessSystem\src\main" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.Application">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="Unnamed" type="Remote" factoryName="Remote">
+      <module name="ElectronicBusinessSystem" />
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="192.168.1.101" />
+      <option name="PORT" value="3102" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="3102" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ElectronicBusinessSystem" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.hlq.course.Application" />
+      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+    <list>
+      <item itemvalue="Remote.Unnamed" />
+      <item itemvalue="Spring Boot.Application" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cd7af3e5-498e-43c7-900b-f02bbc772343" name="Default" comment="" />
+      <created>1568804798484</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1568804798484</updated>
+      <workItem from="1568804799811" duration="3652000" />
+      <workItem from="1568815746797" duration="9311000" />
+      <workItem from="1568853402180" duration="8380000" />
+      <workItem from="1568866612536" duration="1968000" />
+      <workItem from="1568880653110" duration="12651000" />
+      <workItem from="1568945509219" duration="23409000" />
+      <workItem from="1568990353196" duration="2101000" />
+      <workItem from="1569066269828" duration="3173000" />
+      <workItem from="1569330289044" duration="61729000" />
+      <workItem from="1570098819417" duration="17638000" />
+      <workItem from="1570243648435" duration="13405000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="157417000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="887" y="2" width="1265" height="1024" extended-state="0" />
+    <layout>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50053304" side_tool="true" weight="0.19172113" />
+      <window_info anchor="right" id="Maven Projects" order="9" weight="0.10021322" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="right" id="Database" order="5" weight="0.32889125" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.45424837" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.33860046" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info id="Image Layers" order="3" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32897604" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Version Control" order="12" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.4019608" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.32897604" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2700565" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24979253" />
+      <window_info anchor="right" id="Bean Validation" order="8" />
+      <window_info id="Web" order="6" side_tool="true" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.31808278" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://D:/server/repository/org/springframework/security/spring-security-core/5.0.5.RELEASE/spring-security-core-5.0.5.RELEASE-sources.jar!/org/springframework/security/authentication/ProviderManager.java</url>
+          <line>173</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/UserController.java</url>
+          <line>20</line>
+          <properties />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/UserController.java</url>
+          <line>22</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/ItemController.java</url>
+          <line>24</line>
+          <properties />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/ItemController.java</url>
+          <line>25</line>
+          <properties />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/UserController.java</url>
+          <line>30</line>
+          <properties />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/UserController.java</url>
+          <line>19</line>
+          <properties class="com.hlq.course.controller.UserController" method="login">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="25" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="jar://D:/server/repository/org/springframework/security/spring-security-core/5.0.5.RELEASE/spring-security-core-5.0.5.RELEASE-sources.jar!/org/springframework/security/authentication/UsernamePasswordAuthenticationToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="72" column="10" lean-forward="true" selection-start-line="72" selection-start-column="10" selection-end-line="72" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="20" column="57" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/security/TransactionAdviceConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/service/CategoryService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="29" column="21" lean-forward="true" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/lang/reflect/Method.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6.jar!/org/apache/ibatis/binding/MapperProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/lang/ThreadLocal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="222" selection-start-line="222" selection-end-line="222" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/springframework/spring-context/5.0.6.RELEASE/spring-context-5.0.6.RELEASE.jar!/org/springframework/context/i18n/LocaleContextHolder.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/springframework/spring-webmvc/5.0.6.RELEASE/spring-webmvc-5.0.6.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="571" selection-start-line="571" selection-end-line="571" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/springframework/spring-webmvc/5.0.6.RELEASE/spring-webmvc-5.0.6.RELEASE.jar!/org/springframework/web/servlet/DispatcherServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="425" selection-start-line="425" selection-end-line="425" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/springframework/spring-webmvc/5.0.6.RELEASE/spring-webmvc-5.0.6.RELEASE.jar!/org/springframework/web/servlet/FrameworkServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="502" selection-start-line="502" selection-end-line="502" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/springframework/spring-web/5.0.6.RELEASE/spring-web-5.0.6.RELEASE.jar!/org/springframework/web/filter/RequestContextFilter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/springframework/spring-web/5.0.6.RELEASE/spring-web-5.0.6.RELEASE.jar!/org/springframework/web/filter/OncePerRequestFilter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/catalina/core/ApplicationFilterChain.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/catalina/core/StandardWrapperValve.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="204" selection-start-line="204" selection-end-line="204" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/catalina/core/StandardContextValve.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/catalina/authenticator/AuthenticatorBase.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="320" selection-start-line="320" selection-end-line="320" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/catalina/core/StandardHostValve.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="36" column="103" selection-start-line="36" selection-start-column="103" selection-end-line="36" selection-end-column="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/catalina/valves/ErrorReportValve.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/catalina/core/StandardEngineValve.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/catalina/connector/CoyoteAdapter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="412" selection-start-line="412" selection-end-line="412" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/coyote/http11/Http11Processor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="499" selection-start-line="499" selection-end-line="499" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/coyote/AbstractProcessorLight.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/coyote/AbstractProtocol.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="776" selection-start-line="776" selection-end-line="776" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/apache/tomcat/embed/tomcat-embed-core/8.5.31/tomcat-embed-core-8.5.31.jar!/org/apache/tomcat/util/net/NioEndpoint.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="365" selection-start-line="365" selection-end-line="365" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/serviceImpl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="664">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1153#1154#0" expanded="true" />
+            <element signature="e#1202#1203#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/pojo/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/PanelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/server/repository/org/springframework/spring-web/5.0.6.RELEASE/spring-web-5.0.6.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/ConvertRecordController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/DepositRecordController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/GiftController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/dao/ItemCartMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/CategoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/service/ItemSevice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/serviceImpl/ItemSeviceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/ItemController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/CartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/service/CartService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/serviceImpl/CartServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="32" column="25" lean-forward="true" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/AddressMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/dao/AddressMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/pojo/Address.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+          <folding>
+            <element signature="e#315#316#0" expanded="true" />
+            <element signature="e#340#341#0" expanded="true" />
+            <element signature="e#377#378#0" expanded="true" />
+            <element signature="e#405#406#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#468#469#0" expanded="true" />
+            <element signature="e#513#514#0" expanded="true" />
+            <element signature="e#549#550#0" expanded="true" />
+            <element signature="e#580#581#0" expanded="true" />
+            <element signature="e#607#608#0" expanded="true" />
+            <element signature="e#647#648#0" expanded="true" />
+            <element signature="e#708#709#0" expanded="true" />
+            <element signature="e#740#741#0" expanded="true" />
+            <element signature="e#768#769#0" expanded="true" />
+            <element signature="e#810#811#0" expanded="true" />
+            <element signature="e#874#875#0" expanded="true" />
+            <element signature="e#908#909#0" expanded="true" />
+            <element signature="e#938#939#0" expanded="true" />
+            <element signature="e#984#985#0" expanded="true" />
+            <element signature="e#1054#1055#0" expanded="true" />
+            <element signature="e#1094#1095#0" expanded="true" />
+            <element signature="e#1130#1131#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="e#1346#1347#0" expanded="true" />
+            <element signature="e#1398#1399#0" expanded="true" />
+            <element signature="e#1477#1478#0" expanded="true" />
+            <element signature="e#1514#1515#0" expanded="true" />
+            <element signature="e#1547#1548#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/service/AddressService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="54" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/serviceImpl/AddressServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="19" column="25" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hlq/course/controller/AddressController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="21" column="39" lean-forward="true" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>ElectronicBusinessSystem:Web exploded</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.45057473" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web (ElectronicBusinessSystem)|Web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.45057473" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.45057473" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.45057473" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring|ElectronicBusinessSystem</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.45057473" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: org.apache.tomcat.embed:tomcat-embed-el:8.5.31</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.45057473" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+  <component name="mavenExecuteGoalHistory">
+    <option value="$PROJECT_DIR$" />
+  </component>
+</project>

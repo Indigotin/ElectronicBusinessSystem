@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hlq.course.dao.ItemMapper" >
+  <resultMap id="BaseResultMap" type="com.hlq.course.pojo.Item" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sell_point" property="sellPoint" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="limit_num" property="limitNum" jdbcType="INTEGER" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, sell_point, price, num, limit_num, image, cid, status, created, updated
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hlq.course.pojo.ItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hlq.course.pojo.ItemExample" >
+    delete from item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hlq.course.pojo.Item" >
+    insert into item (id, name, sell_point, 
+      price, num, limit_num, 
+      image, cid, status, 
+      created, updated)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sellPoint,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{num,jdbcType=INTEGER}, #{limitNum,jdbcType=INTEGER}, 
+      #{image,jdbcType=VARCHAR}, #{cid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hlq.course.pojo.Item" >
+    insert into item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sellPoint != null" >
+        sell_point,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="limitNum != null" >
+        limit_num,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sellPoint != null" >
+        #{sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="limitNum != null" >
+        #{limitNum,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hlq.course.pojo.ItemExample" resultType="java.lang.Integer" >
+    select count(*) from item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update item
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellPoint != null" >
+        sell_point = #{record.sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num,jdbcType=INTEGER},
+      </if>
+      <if test="record.limitNum != null" >
+        limit_num = #{record.limitNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cid != null" >
+        cid = #{record.cid,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.created != null" >
+        created = #{record.created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updated != null" >
+        updated = #{record.updated,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update item
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      sell_point = #{record.sellPoint,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      num = #{record.num,jdbcType=INTEGER},
+      limit_num = #{record.limitNum,jdbcType=INTEGER},
+      image = #{record.image,jdbcType=VARCHAR},
+      cid = #{record.cid,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      created = #{record.created,jdbcType=TIMESTAMP},
+      updated = #{record.updated,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hlq.course.pojo.Item" >
+    update item
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sellPoint != null" >
+        sell_point = #{sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="limitNum != null" >
+        limit_num = #{limitNum,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hlq.course.pojo.Item" >
+    update item
+    set name = #{name,jdbcType=VARCHAR},
+      sell_point = #{sellPoint,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      num = #{num,jdbcType=INTEGER},
+      limit_num = #{limitNum,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      cid = #{cid,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

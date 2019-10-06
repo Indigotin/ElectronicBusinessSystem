@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hlq.course.dao.ItemCartMapper" >
+  <resultMap id="BaseResultMap" type="com.hlq.course.pojo.ItemCart" >
+    <id column="cart_id" property="cartId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="item_cart_status" property="itemCartStatus" jdbcType="INTEGER" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="item_id" property="itemId" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="total_price" property="totalPrice" jdbcType="DECIMAL" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="item_cat_id" property="itemCatId" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="item_image" property="itemImage" jdbcType="VARCHAR" />
+    <result column="item_sell_point" property="itemSellPoint" jdbcType="VARCHAR" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cart_id, user_id, remark, item_cart_status, quantity, item_id, price, total_price, 
+    create_date, modify_date, item_cat_id, username, item_image, item_sell_point, item_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hlq.course.pojo.ItemCartExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from item_cart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from item_cart
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from item_cart
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hlq.course.pojo.ItemCartExample" >
+    delete from item_cart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hlq.course.pojo.ItemCart" >
+    insert into item_cart (cart_id, user_id, remark, 
+      item_cart_status, quantity, item_id, 
+      price, total_price, create_date, 
+      modify_date, item_cat_id, username, 
+      item_image, item_sell_point, item_name
+      )
+    values (#{cartId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{itemCartStatus,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL}, #{totalPrice,jdbcType=DECIMAL}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifyDate,jdbcType=TIMESTAMP}, #{itemCatId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{itemImage,jdbcType=VARCHAR}, #{itemSellPoint,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hlq.course.pojo.ItemCart" >
+    insert into item_cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cartId != null" >
+        cart_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="itemCartStatus != null" >
+        item_cart_status,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="itemCatId != null" >
+        item_cat_id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="itemImage != null" >
+        item_image,
+      </if>
+      <if test="itemSellPoint != null" >
+        item_sell_point,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cartId != null" >
+        #{cartId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCartStatus != null" >
+        #{itemCartStatus,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemCatId != null" >
+        #{itemCatId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="itemImage != null" >
+        #{itemImage,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSellPoint != null" >
+        #{itemSellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hlq.course.pojo.ItemCartExample" resultType="java.lang.Integer" >
+    select count(*) from item_cart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update item_cart
+    <set >
+      <if test="record.cartId != null" >
+        cart_id = #{record.cartId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemCartStatus != null" >
+        item_cart_status = #{record.itemCartStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.quantity != null" >
+        quantity = #{record.quantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemId != null" >
+        item_id = #{record.itemId,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalPrice != null" >
+        total_price = #{record.totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyDate != null" >
+        modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.itemCatId != null" >
+        item_cat_id = #{record.itemCatId,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemImage != null" >
+        item_image = #{record.itemImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemSellPoint != null" >
+        item_sell_point = #{record.itemSellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemName != null" >
+        item_name = #{record.itemName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update item_cart
+    set cart_id = #{record.cartId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      item_cart_status = #{record.itemCartStatus,jdbcType=INTEGER},
+      quantity = #{record.quantity,jdbcType=INTEGER},
+      item_id = #{record.itemId,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DECIMAL},
+      total_price = #{record.totalPrice,jdbcType=DECIMAL},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      item_cat_id = #{record.itemCatId,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      item_image = #{record.itemImage,jdbcType=VARCHAR},
+      item_sell_point = #{record.itemSellPoint,jdbcType=VARCHAR},
+      item_name = #{record.itemName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hlq.course.pojo.ItemCart" >
+    update item_cart
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCartStatus != null" >
+        item_cart_status = #{itemCartStatus,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemCatId != null" >
+        item_cat_id = #{itemCatId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="itemImage != null" >
+        item_image = #{itemImage,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSellPoint != null" >
+        item_sell_point = #{itemSellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hlq.course.pojo.ItemCart" >
+    update item_cart
+    set user_id = #{userId,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      item_cart_status = #{itemCartStatus,jdbcType=INTEGER},
+      quantity = #{quantity,jdbcType=INTEGER},
+      item_id = #{itemId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      item_cat_id = #{itemCatId,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      item_image = #{itemImage,jdbcType=VARCHAR},
+      item_sell_point = #{itemSellPoint,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR}
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </update>
+</mapper>
