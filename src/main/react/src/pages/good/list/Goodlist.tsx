@@ -47,7 +47,7 @@ class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
         'model': (model) => {
             this.loadFormData();
         }
-    }
+    };
 
     handleSubmit = (e: any) => {
         let success = () => {

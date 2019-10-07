@@ -171,10 +171,6 @@ class App extends Page<any, APPReduxData, IPageProps<IPageProps>, {
             }
         };
         let siderSelect = findKey({children: menuData});
-        this.setState({
-            siderSelect: [siderSelect],
-            menuOpenKeys: menuOpenKeys
-        });
         this.menuClick({
             item: {},
             key: siderSelect,
@@ -198,9 +194,11 @@ class App extends Page<any, APPReduxData, IPageProps<IPageProps>, {
                 }
             </SubMenu>
         } else {
-            return <Menu.Item key={data.key}><Link to={data.url}><Icon theme="filled"
-                                                                       type={data.type}/><span>{data.title}</span>
-            </Link></Menu.Item>
+            return <Menu.Item key={data.key}>
+                <Link to={data.url}><Icon theme="filled"
+                                          type={data.type}/><span>{data.title}</span>
+                </Link>
+            </Menu.Item>
         }
     }
 
@@ -229,14 +227,15 @@ class App extends Page<any, APPReduxData, IPageProps<IPageProps>, {
                         children: menuData
                     }, key)
                 }
-            })
+            }),
+            menuOpenKeys: [...keyPath].slice(0,keyPath.length -1),
+            siderSelect: [key]
         })
     };
 
 
     public render() {
         const state = this.state;
-        console.log("url:", this.props.location.pathname)
         return (
             <div className='app'>
                 {
@@ -270,10 +269,9 @@ class App extends Page<any, APPReduxData, IPageProps<IPageProps>, {
                                                 <Menu
                                                     mode="inline"
                                                     theme="dark"
-                                                    onClick={this.menuClick}
+                                                    onClick={this.menuClick.bind(this)}
                                                     inlineCollapsed={state.siderCollapse}
                                                     defaultSelectedKeys={state.siderSelect}
-                                                    openKeys={state.menuOpenKeys}
                                                 >
                                                     {
                                                         menuData.map(menu => this.menuRender(menu, this))
@@ -287,7 +285,7 @@ class App extends Page<any, APPReduxData, IPageProps<IPageProps>, {
                                     <Breadcrumb style={{margin: '16px 0'}}>
                                         {
                                             state.menuBreadcrumb.map(node => {
-                                                return <Breadcrumb.Item>{node.title}</Breadcrumb.Item>
+                                                return <Breadcrumb.Item key={node.key}>{node.title}</Breadcrumb.Item>
                                             })
                                         }
                                     </Breadcrumb>

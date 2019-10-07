@@ -20,7 +20,7 @@ export interface TableFormProps<M> extends FormComponentProps<M> {
 export default class IComp<M = {}, R = {}, P = any, S = {}, SS = any> extends React.Component<P & SubscriptionAPI, S, SS> implements IApi<M> {
     protected api: BaseApi<M>;
     protected watch: any = {};
-    protected namespace: string;
+    protected readonly namespace: string;
 
     public constructor(props: any, baseUrl?: string, namespace?: string) {
         super(props);
@@ -157,7 +157,7 @@ export default class IComp<M = {}, R = {}, P = any, S = {}, SS = any> extends Re
             }) {
                 callback();
             }
-        }
+        };
         super.setState(state, call);
     }
 
