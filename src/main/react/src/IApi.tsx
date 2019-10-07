@@ -12,11 +12,13 @@ export interface FetchRequest extends RequestInit {
 }
 
 export interface ApiResult<T = any> {
-    status: number
+    status: number,
+    code: number,
     success: Boolean,
     data?: T,
     errorCode?: string,
     errorMsg?: string,
+    msg: string,
     response: Response
 }
 
@@ -39,7 +41,7 @@ export default interface IApi<T> {
 
     post(url: string, param?: {}, method?: string): Promise<any>;
 
-    postJson(url: string, data?: string): Promise<any>;
+    postJson(url: string, data?: any): Promise<any>;
 
     put(url: string, param?: any): Promise<boolean>;
 

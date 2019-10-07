@@ -47,7 +47,7 @@ export default class IComp<M = {}, R = {}, P = any, S = {}, SS = any> extends Re
         return this.api.post(url, param, method);
     }
 
-    postJson(url: string, data?: {}): Promise<any> {
+    postJson(url: string, data?: any): Promise<any> {
         return this.api.postJson(url, data);
     }
 

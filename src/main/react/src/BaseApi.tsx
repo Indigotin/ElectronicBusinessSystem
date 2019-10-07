@@ -58,7 +58,7 @@ class BaseApi<M> implements IApi<M> {
     });
   }
 
-  postJson(url: string, data?: {}): Promise<any> {
+  postJson(url: string, data?: any): Promise<any> {
     return this.request({
       url,
       method: 'POST',
@@ -135,7 +135,7 @@ class BaseApi<M> implements IApi<M> {
   }
 
   private static check(result: ApiResult): any {
-    if (!result.success) {
+    if (result.code !== 200) {
       return Promise.reject(result);
     }
     return result.data;

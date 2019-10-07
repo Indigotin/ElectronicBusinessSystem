@@ -6,12 +6,20 @@ import * as React from "react";
 import {FormComponentProps} from "antd/lib/form";
 import {connect} from "dva";
 import Page, {TablePageRedux, TablePageState} from "../../../Page";
-import {Button, Icon, Input, Pagination, Table, Tag} from "antd";
+import {Button, Icon, Input, message, Pagination, Table, Tag} from "antd";
+import "./index.css"
 
 const {Column} = Table;
 
-interface GoodModel {
-
+export interface GoodModel {
+    id?: number,
+    name?: string,
+    sellPoint?: string,
+    price?: number,
+    num?: number,
+    limitNum?: number,
+    image?: string,
+    status?: number
 }
 
 interface ISate extends TablePageState {
@@ -23,7 +31,7 @@ interface ISate extends TablePageState {
 
 class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentProps<any>, ISate> {
     public constructor(props: any) {
-        super(props, '', 'app');
+        super(props, '', 'good');
     }
 
     public state: ISate = {
@@ -34,8 +42,27 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
         tableLoading: false
     };
 
+    componentWillMount(): void {
+        this.loadTable();
+    }
+
     public loadTable = (): void => {
         // load data
+        this.setState({
+            tableLoading: true
+        });
+        this.postJson(`/es/recommend/${this.state.pageNumber}/${this.state.pageSize}`, [1, 2, 3]).then(r => {
+            console.log('data:', r);
+            this.setSta({
+                list: r[0]
+            })
+        }).catch(e => {
+            message.error("商品列表加载失败");
+        }).finally(() => {
+            this.setState({
+                tableLoading: false
+            });
+        })
     };
 
     public rowSelection = {
@@ -43,7 +70,7 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
             console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
         },
         getCheckboxProps: record => ({
-            disabled: record.name === 'Disabled User', // Column configuration not to be checked
+            disabled: record.name === 'Disabled User',
             name: record.name,
         }),
     };
@@ -51,6 +78,7 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
     public render() {
         const state = this.state;
         const queryData = state.queryData;
+        const redux = this.props.redux;
         return <div className="list-box">
             <div className='row-box i-yx-between al-str'>
                 <div><Icon type="search"/>筛选搜索</div>
@@ -96,25 +124,29 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
                 <Button icon="plus" size='small'>添加</Button>
             </div>
             <div className='row-box table-row-box'>
-                <Table dataSource={[
-                    {
-                        id: 1
-                    }
-                ]} bordered
+                <Table dataSource={redux.list} bordered
                        rowSelection={this.rowSelection}
                        loading={this.state.tableLoading}
                        pagination={false}
                 >
                     <Column title="编号" dataIndex="id" key="id"/>
-                    <Column title="商品图片" dataIndex="ip" key="ip"/>
-                    <Column title="商品名称" dataIndex="port" key="port"/>
-                    <Column title="价格/货号" dataIndex="username" key="username"/>
-                    <Column title="标签" dataIndex="password" key="password"/>
-                    <Column title="排序" dataIndex="passphrase" key="passphrase"/>
-                    <Column title="SKU库" dataIndex="passphrase" key="passphrase"/>
-                    <Column title="销量" dataIndex="passphrase" key="passphrase"/>
-                    <Column title="审核状态" dataIndex="passphrase" key="passphrase"/>
-                    <Column title="操作" dataIndex="passphrase" key="passphrase"
+                    <Column title="商品图片" dataIndex="image" key="image"
+                            align='center'
+                            render={
+                                (text, record: GoodModel) => (
+                                    <img src={text} className='good-table-img'/>
+                                )}/>
+                    <Column title="商品名称" dataIndex="name" key="name"/>
+                    <Column title="价格" dataIndex="price" key="price"
+                    render={
+                        (text, record: GoodModel) => (
+                            <div>¥{text}</div>
+                        )
+                    }
+                    />
+                    <Column title="销量" dataIndex="sellPoint" key="sellPoint"/>
+                    <Column title="状态" dataIndex="status" key="status"/>
+                    <Column title="操作"
                             width='10rem'
                             render={(text, record: GoodModel) => (
                                 <div className='table-operation'>
@@ -163,6 +195,6 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
     }
 }
 
-export default connect(({app}) => ({
-    redux: app
+export default connect(({good}) => ({
+    redux: good
 }))(GoodList);
