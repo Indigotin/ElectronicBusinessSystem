@@ -4,12 +4,15 @@
  */
 import * as React from "react";
 import {FormComponentProps} from "antd/lib/form";
-import {connect} from "dva";
+import {connect, SubscriptionAPI} from "dva";
 import Page, {TablePageRedux, TablePageState} from "../../../Page";
-import {Button, Icon, Input, message, Pagination, Table, Tag} from "antd";
+import {Button, Form, Icon, Input, message, Modal, Pagination, Select, Table, Tabs, Upload} from "antd";
 import "./index.css"
+import IComp, {TableFormProps} from "../../../IComp";
+import {UploadFile} from "antd/lib/upload/interface";
 
 const {Column} = Table;
+const {Option} = Select;
 
 export interface GoodModel {
     id?: number,
@@ -22,11 +25,207 @@ export interface GoodModel {
     status?: number
 }
 
+class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
+    imageModel: UploadFile,
+    saveLoading: boolean
+}> {
+    constructor(props: TableFormProps<GoodModel>) {
+        super(props, '/good', "good");
+    }
+
+    state = {
+        saveLoading: false,
+        imageModel: null
+    };
+
+    componentDidMount() {
+        this.loadFormData();
+    }
+
+
+    watch = {
+        'model': (model) => {
+            this.loadFormData();
+        }
+    }
+
+    handleSubmit = (e: any) => {
+        let success = () => {
+            this.setState({
+                saveLoading: true
+            });
+            let result;
+            if (this.props.formType === "add") {
+                result = this.save(
+                    {
+                        ...this.props.form.getFieldsValue()
+                    }
+                );
+            }
+            if (this.props.formType === "edit") {
+                result = this.update(
+                    {
+                        ...this.props.form.getFieldsValue(),
+                        id: this.props.model.id
+                    }
+                );
+            }
+            result.then(r => {
+                this.props.formSu && this.props.formSu(this.props.form.getFieldsValue(), r);
+            }).catch(e => {
+                this.props.formFai && this.props.formFai(this.props.form.getFieldsValue(), e);
+            }).finally(() => {
+                this.setState({
+                    saveLoading: false
+                })
+            })
+        };
+        this.props.form.validateFields((errors, values) => {
+            if (!errors) {
+                success();
+            }
+        });
+    };
+    public normFile = e => {
+        let file = e.file;
+        if (file.response && file.response.status && file.response.status === 'done') {
+            this.setState({
+                imageModel: {
+                    uid: file.uid,
+                    name: file.response.name,
+                    status: file.response.status,
+                    url: file.response.url
+                }
+            });
+        } else {
+            this.setState({
+                imageModel: file
+            });
+        }
+    };
+
+    private loadFormData() {
+        if (!this.props.model) {
+            this.props.form.resetFields();
+            this.setState({
+                imageModel: null
+            });
+            return;
+        }
+        this.props.form.setFieldsValue({
+            ...this.props.model,
+            imageList: [
+                {
+                    uid: this.props.model.id,
+                    name: this.props.model.image,
+                    status: 'done',
+                    url: this.props.model.image
+                }
+            ]
+        });
+        if (this.props.model.image) {
+            this.setState({
+                imageModel: {
+                    uid: this.props.model.id,
+                    name: this.props.model.name,
+                    status: 'done',
+                    url: this.props.model.image
+                }
+            })
+        }
+    }
+
+    render() {
+        const {getFieldDecorator} = this.props.form;
+        const state = this.state;
+        const props = this.props;
+        const uploadButton = (
+            <div>
+                <Icon type="plus"/>
+                <div className="ant-upload-text">Upload</div>
+            </div>
+        );
+        return (
+            <Form labelCol={{span: 5}} wrapperCol={{span: 12}} onSubmit={this.handleSubmit}>
+                <Form.Item label="商品名">
+                    {getFieldDecorator('name', {
+                        rules: [
+                            {required: true, message: '请输入商品名',}
+                        ],
+                    })(<Input disabled={props.formType === 'see'}/>)}
+                </Form.Item>
+                <Form.Item label="价格">
+                    {getFieldDecorator('price', {
+                        rules: [
+                            {required: true, message: '请输入商品价格',}
+                        ],
+                    })(<Input type="number" disabled={props.formType === 'see'}/>)}
+                </Form.Item>
+                <Form.Item label="状态">
+                    {getFieldDecorator('status', {
+                        rules: [
+                            {required: true, message: '选择状态',}
+                        ],
+                    })(
+                        <Select
+                            placeholder="选择状态"
+                            optionFilterProp="children"
+                            disabled={props.formType === 'see'}
+                        >
+                            <Option value={1}>上架</Option>
+                            <Option value={2}>下架</Option>
+                            <Option value={3}>过期</Option>
+                        </Select>
+                    )}
+                </Form.Item>
+                <Form.Item label="商品图片">
+                    {getFieldDecorator('image', {
+                        rules: [
+                            {required: true, message: '上传商品图片',}
+                        ],
+                    })(
+                        <Upload
+                            disabled={props.formType === 'see'}
+                            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                            listType="picture-card"
+                            onChange={this.normFile}
+                            fileList={state.imageModel ? [state.imageModel] : []}
+                        >
+                            {props.formType === 'see' ? null : uploadButton}
+                        </Upload>
+                    )}
+                </Form.Item>
+                <Form.Item wrapperCol={{span: 12, offset: 5}}>
+                    <div className='full-width xy-center react'>
+                        <Button type="primary" htmlType="submit" loading={this.state.saveLoading}
+                                disabled={props.formType === 'see'}>
+                            确定
+                        </Button>
+                        <Button type="default" loading={this.state.saveLoading}
+                                onClick={() => {
+                                    this.props.cancel(this.props.model)
+                                }}>
+                            取消
+                        </Button>
+                    </div>
+                </Form.Item>
+            </Form>
+        );
+    }
+}
+
+const GoodFormCom = Form.create<TableFormProps<GoodModel>>()(
+    connect(({server}) => ({redux: server}))(GoodForm)
+);
+
 interface ISate extends TablePageState {
     queryData: {
         name?: string,
         goodCode?: string
-    }
+    },
+    editModelVisible: boolean,
+    formType?: 'edit' | 'add' | 'see',
+    selectModel?: GoodModel
 }
 
 class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentProps<any>, ISate> {
@@ -39,7 +238,8 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
         pageSize: 10,
         pageNumber: 1,
         total: 100,
-        tableLoading: false
+        tableLoading: false,
+        editModelVisible: false
     };
 
     componentWillMount(): void {
@@ -52,7 +252,6 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
             tableLoading: true
         });
         this.postJson(`/es/recommend/${this.state.pageNumber}/${this.state.pageSize}`, [1, 2, 3]).then(r => {
-            console.log('data:', r);
             this.setSta({
                 list: r[0]
             })
@@ -64,6 +263,12 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
             });
         })
     };
+
+    public editHandleCancel() {
+        this.setState({
+            editModelVisible: false
+        })
+    }
 
     public rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
@@ -121,7 +326,15 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
                 <div>
                     <Icon type="table"/> 数据列表
                 </div>
-                <Button icon="plus" size='small'>添加</Button>
+                <Button icon="plus" size='small' onClick={
+                    () => {
+                        this.setState({
+                            editModelVisible: true,
+                            selectModel: null,
+                            formType: "add"
+                        })
+                    }
+                }>添加</Button>
             </div>
             <div className='row-box table-row-box'>
                 <Table dataSource={redux.list} bordered
@@ -138,11 +351,11 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
                                 )}/>
                     <Column title="商品名称" dataIndex="name" key="name"/>
                     <Column title="价格" dataIndex="price" key="price"
-                    render={
-                        (text, record: GoodModel) => (
-                            <div>¥{text}</div>
-                        )
-                    }
+                            render={
+                                (text, record: GoodModel) => (
+                                    <div>¥{text}</div>
+                                )
+                            }
                     />
                     <Column title="销量" dataIndex="sellPoint" key="sellPoint"/>
                     <Column title="状态" dataIndex="status" key="status"/>
@@ -152,12 +365,20 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
                                 <div className='table-operation'>
                                     <Button onClick={
                                         () => {
-
+                                            this.setState({
+                                                editModelVisible: true,
+                                                formType: "see",
+                                                selectModel: record
+                                            })
                                         }
                                     }>查看</Button>
                                     <Button onClick={
                                         () => {
-
+                                            this.setState({
+                                                editModelVisible: true,
+                                                formType: "edit",
+                                                selectModel: record
+                                            })
                                         }
                                     }>编辑</Button>
                                     <Button onClick={
@@ -191,6 +412,39 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
                     />
                 </div>
             </div>
+            <Modal
+                title={
+                    {
+                        add: '添加商品',
+                        edit: '编辑商品',
+                        see: '查看商品'
+                    }[state.formType]
+                }
+                centered
+                visible={this.state.editModelVisible}
+                footer={null}
+                onCancel={this.editHandleCancel.bind(this)}
+            >
+                <GoodFormCom model={state.selectModel} formType={state.formType}
+                             cancel={
+                                 () => {
+                                     this.setState({
+                                         editModelVisible: false
+                                     })
+                                 }
+                             }
+                             formSu={
+                                 (good) => {
+                                     console.log("good:", good)
+                                 }
+                             }
+                             formFai={
+                                 (error) => {
+                                     console.log("error:", error)
+                                 }
+                             }
+                />
+            </Modal>
         </div>;
     }
 }

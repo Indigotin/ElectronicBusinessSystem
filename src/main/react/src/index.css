@@ -384,3 +384,6 @@
 .ant-btn {
     margin-top: 0.3rem;
 }
+.react .ant-btn {
+    margin-left: 0.5rem;
+}

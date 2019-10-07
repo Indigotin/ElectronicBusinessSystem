@@ -2,6 +2,20 @@ import * as React from 'react';
 import IApi, {FetchRequest, Pageable} from "./IApi";
 import BaseApi from "./BaseApi";
 import {SubscriptionAPI} from "dva";
+import {FormComponentProps} from "antd/lib/form";
+
+export interface TableFormProps<M> extends FormComponentProps<M> {
+    formType: 'add' | 'edit' | 'see',
+
+    formSu(model: M, result: any): void,
+
+    formFai?(model?: M, result?: any): void,
+
+    cancel(model: M): void,
+
+    model?: M
+}
+
 
 export default class IComp<M = {}, R = {}, P = any, S = {}, SS = any> extends React.Component<P & SubscriptionAPI, S, SS> implements IApi<M> {
     protected api: BaseApi<M>;

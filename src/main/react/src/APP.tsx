@@ -129,7 +129,9 @@ class App extends Page<any, APPReduxData, IPageProps<IPageProps>, {
         key: string,
         title: string
     }>,
-    siderCollapse: boolean
+    siderCollapse: boolean,
+    siderSelect: Array<string>,
+    menuOpenKeys: Array<string>
 }> {
     public constructor(props: IPageProps) {
         super(props, '', 'app');
@@ -142,8 +144,43 @@ class App extends Page<any, APPReduxData, IPageProps<IPageProps>, {
                 title: '首页'
             }
         ],
-        siderCollapse: true
+        siderCollapse: true,
+        siderSelect: ['index'],
+        menuOpenKeys: []
     };
+
+    componentWillMount(): void {
+        let url = this.props.location.pathname;
+        let menuOpenKeys = [];
+        let keyPath = [];
+        let findKey = (node) => {
+            if (Array.isArray(node.children)) {
+                let result;
+                for (let i = 0; i < node.children.length; i++) {
+                    result = findKey(node.children[i]);
+                    if (result) {
+                        node.key ? menuOpenKeys.push(node.key) : '';
+                        node.key ? keyPath.push(node.key) : '';
+                        return result;
+                    }
+                }
+            }
+            if (node.url === url) {
+                keyPath.push(node.key)
+                return node.key;
+            }
+        };
+        let siderSelect = findKey({children: menuData});
+        this.setState({
+            siderSelect: [siderSelect],
+            menuOpenKeys: menuOpenKeys
+        });
+        this.menuClick({
+            item: {},
+            key: siderSelect,
+            keyPath: keyPath
+        });
+    }
 
     public menuRender(data, that) {
         if (data.children) {
@@ -168,6 +205,7 @@ class App extends Page<any, APPReduxData, IPageProps<IPageProps>, {
     }
 
     public menuClick = ({item, key, keyPath}) => {
+        console.log("keyPath:", keyPath);
         let findTitle = (node, key): string => {
             if (node.key === key) {
                 return node.title;
@@ -195,8 +233,10 @@ class App extends Page<any, APPReduxData, IPageProps<IPageProps>, {
         })
     };
 
+
     public render() {
         const state = this.state;
+        console.log("url:", this.props.location.pathname)
         return (
             <div className='app'>
                 {
@@ -232,7 +272,8 @@ class App extends Page<any, APPReduxData, IPageProps<IPageProps>, {
                                                     theme="dark"
                                                     onClick={this.menuClick}
                                                     inlineCollapsed={state.siderCollapse}
-                                                    defaultSelectedKeys={['index']}
+                                                    defaultSelectedKeys={state.siderSelect}
+                                                    openKeys={state.menuOpenKeys}
                                                 >
                                                     {
                                                         menuData.map(menu => this.menuRender(menu, this))

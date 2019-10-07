@@ -12,7 +12,6 @@ export const APPReducers = {
 };
 export const GoodReducers = {
     updateState(state: TablePageRedux<GoodModel>, { data }) {
-        console.log("1111",data)
         return {
             ...state, ...data
         }

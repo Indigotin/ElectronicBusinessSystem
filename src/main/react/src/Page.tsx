@@ -21,16 +21,6 @@ export interface TablePageState {
 }
 
 
-export interface TableFormProps<M, R> {
-    formType: 'add' | 'edit',
-
-    formSu?(model: M): void,
-
-    formFai?(model: M): void,
-
-    model?: M
-}
-
 export interface TablePageRedux<M> {
     list?: Array<M>
 }
