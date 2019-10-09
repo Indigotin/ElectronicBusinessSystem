@@ -56,7 +56,8 @@ class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
             });
             let result;
             if (this.props.formType === "add") {
-                result = this.save(
+                result = this.postJson(
+                    "/api/item/add",
                     {
                         ...this.props.form.getFieldsValue()
                     }

@@ -41,4 +41,13 @@ public class ItemController {
         PageInfo<Item> list = itemSevice.getItemsPage(searchValue,1,30);
         return Message.success(list);
     }
+
+    @RequestMapping("/item/add")
+    public Message addItem(@RequestBody Item item){
+        if(itemSevice.addItem(item)){
+            return Message.success();
+        }
+        return Message.failed();
+    }
+
 }

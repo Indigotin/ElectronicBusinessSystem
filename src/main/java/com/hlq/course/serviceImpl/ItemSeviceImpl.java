@@ -59,4 +59,10 @@ public class ItemSeviceImpl implements ItemSevice {
         pageInfo.setList(page.getResult());
         return pageInfo;
     }
+
+    @Override
+    public Boolean addItem(Item item) {
+        itemMapper.insert(item);
+        return Boolean.TRUE;
+    }
 }
