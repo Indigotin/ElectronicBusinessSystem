@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hlq.course.dao.OrderitemMapper" >
-  <resultMap id="BaseResultMap" type="com.hlq.course.pojo.Orderitem" >
-    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
-    <id column="product_id" property="productId" jdbcType="VARCHAR" />
-    <result column="buynum" property="buynum" jdbcType="INTEGER" />
+<mapper namespace="com.hlq.course.dao.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.hlq.course.pojo.Admin" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    order_id, product_id, buynum
+    id, username, password
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hlq.course.pojo.OrderitemExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hlq.course.pojo.AdminExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from orderitem
+    from admin
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -81,72 +81,70 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.hlq.course.pojo.OrderitemKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from orderitem
-    where order_id = #{orderId,jdbcType=VARCHAR}
-      and product_id = #{productId,jdbcType=VARCHAR}
+    from admin
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.hlq.course.pojo.OrderitemKey" >
-    delete from orderitem
-    where order_id = #{orderId,jdbcType=VARCHAR}
-      and product_id = #{productId,jdbcType=VARCHAR}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admin
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.hlq.course.pojo.OrderitemExample" >
-    delete from orderitem
+  <delete id="deleteByExample" parameterType="com.hlq.course.pojo.AdminExample" >
+    delete from admin
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.hlq.course.pojo.Orderitem" >
-    insert into orderitem (order_id, product_id, buynum
+  <insert id="insert" parameterType="com.hlq.course.pojo.Admin" >
+    insert into admin (id, username, password
       )
-    values (#{orderId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{buynum,jdbcType=INTEGER}
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.hlq.course.pojo.Orderitem" >
-    insert into orderitem
+  <insert id="insertSelective" parameterType="com.hlq.course.pojo.Admin" >
+    insert into admin
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="orderId != null" >
-        order_id,
+      <if test="id != null" >
+        id,
       </if>
-      <if test="productId != null" >
-        product_id,
+      <if test="username != null" >
+        username,
       </if>
-      <if test="buynum != null" >
-        buynum,
+      <if test="password != null" >
+        password,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="orderId != null" >
-        #{orderId,jdbcType=VARCHAR},
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="productId != null" >
-        #{productId,jdbcType=VARCHAR},
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
       </if>
-      <if test="buynum != null" >
-        #{buynum,jdbcType=INTEGER},
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.hlq.course.pojo.OrderitemExample" resultType="java.lang.Integer" >
-    select count(*) from orderitem
+  <select id="countByExample" parameterType="com.hlq.course.pojo.AdminExample" resultType="java.lang.Integer" >
+    select count(*) from admin
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update orderitem
+    update admin
     <set >
-      <if test="record.orderId != null" >
-        order_id = #{record.orderId,jdbcType=VARCHAR},
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.productId != null" >
-        product_id = #{record.productId,jdbcType=VARCHAR},
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
       </if>
-      <if test="record.buynum != null" >
-        buynum = #{record.buynum,jdbcType=INTEGER},
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -154,28 +152,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update orderitem
-    set order_id = #{record.orderId,jdbcType=VARCHAR},
-      product_id = #{record.productId,jdbcType=VARCHAR},
-      buynum = #{record.buynum,jdbcType=INTEGER}
+    update admin
+    set id = #{record.id,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hlq.course.pojo.Orderitem" >
-    update orderitem
+  <update id="updateByPrimaryKeySelective" parameterType="com.hlq.course.pojo.Admin" >
+    update admin
     <set >
-      <if test="buynum != null" >
-        buynum = #{buynum,jdbcType=INTEGER},
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
       </if>
     </set>
-    where order_id = #{orderId,jdbcType=VARCHAR}
-      and product_id = #{productId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hlq.course.pojo.Orderitem" >
-    update orderitem
-    set buynum = #{buynum,jdbcType=INTEGER}
-    where order_id = #{orderId,jdbcType=VARCHAR}
-      and product_id = #{productId,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.hlq.course.pojo.Admin" >
+    update admin
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

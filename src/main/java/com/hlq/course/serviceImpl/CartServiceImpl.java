@@ -34,10 +34,8 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Boolean deleteByUserIdAndItemId(Integer userId, Integer itemId) {
-        ItemCartExample example = new ItemCartExample();
-        example.createCriteria().andUserIdEqualTo(userId).andItemIdEqualTo(itemId);
-        int res = cartMapper.deleteByExample(example);
+    public Boolean deleteByUserIdAndCartId(Integer userId, Integer cartId) {
+        int res = cartMapper.deleteByPrimaryKey(cartId);
         return res > 0 ? Boolean.TRUE : Boolean.FALSE;
     }
 

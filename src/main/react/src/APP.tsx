@@ -7,6 +7,7 @@ import Login from "./pages/login/Login";
 import Index from "./pages/Index";
 import {Breadcrumb, Icon, Layout, Menu} from 'antd';
 import GoodList from './pages/good/list/Goodlist'
+import OrderList from './pages/order/list/Orderlist'
 
 const {Header, Content, Sider} = Layout;
 const {SubMenu} = Menu;
@@ -26,6 +27,10 @@ const routerMap = [
     {
         path: '/good/list',
         com: GoodList
+    },
+    {
+        path: '/order/list',
+        com: OrderList
     }
 ];
 const menuData = [

@@ -1,5 +1,8 @@
 package com.hlq.course.serviceImpl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.hlq.course.dao.ItemMapper;
 import com.hlq.course.pojo.Item;
@@ -44,5 +47,16 @@ public class ItemSeviceImpl implements ItemSevice {
             list.add(itemMapper.selectByPrimaryKey(id));
         });
         return Lists.partition(list,limit);
+    }
+
+    @Override
+    public PageInfo<Item> getItemsPage(String name, Integer cur, Integer size) {
+        Page<Item> page = PageHelper.startPage(cur,size,true);
+        ItemExample example = new ItemExample();
+        example.createCriteria().andNameLike("%"+name+"%");
+        itemMapper.selectByExample(example);
+        PageInfo pageInfo =  page.toPageInfo();
+        pageInfo.setList(page.getResult());
+        return pageInfo;
     }
 }

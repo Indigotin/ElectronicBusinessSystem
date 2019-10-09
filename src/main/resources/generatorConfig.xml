@@ -41,7 +41,7 @@
            enableDeleteByExample="false" enableSelectByExample="false"
            selectByExampleQueryId="false">
     </table>-->
-    
-    <table tableName="address"></table>
+
+    <table tableName="admin"></table>
 </context>
 </generatorConfiguration>

@@ -28,10 +28,10 @@ public class CartController {
         return Message.success(list);
     }
 
-    @RequestMapping("/delete/{username}/{itemId}")
-    public Message deleteCart(@PathVariable("username")String username,@PathVariable("itemId")Integer itemId){
+    @RequestMapping("/delete/{username}/{cartId}")
+    public Message deleteCart(@PathVariable("username")String username,@PathVariable("cartId")Integer cartId){
         User user = userService.selectByUsername(username);
-        if(cartService.deleteByUserIdAndItemId(user.getId(),itemId)){
+        if(cartService.deleteByUserIdAndCartId(user.getId(),cartId)){
             return Message.success(Boolean.TRUE);
         }
         return Message.failed();

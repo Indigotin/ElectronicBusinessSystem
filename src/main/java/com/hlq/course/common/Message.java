@@ -14,6 +14,9 @@ public class Message implements Serializable {
 
 	private Object data;
 
+	public static Message success() {
+		return success(null);
+	}
 	/**
 	 * 普通返回
 	 * @param data 获取的数据
