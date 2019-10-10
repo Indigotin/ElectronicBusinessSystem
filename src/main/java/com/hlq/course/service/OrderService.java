@@ -12,4 +12,5 @@ public interface OrderService {
     Boolean createOrder(OrderModel orderModel);
     PageInfo<OrderModel> getPageByUserId(Integer userId, Integer status, Integer current, Integer size);
     List<OrderModel> getOrderByUserId(Integer userIdr);
+    PageInfo<OrderModel> getAllOrder(Integer current, Integer size);
 }

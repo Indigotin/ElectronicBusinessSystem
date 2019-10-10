@@ -10,23 +10,23 @@ import {Button, Form, Icon, Input, message, Modal, Pagination, Select, Table, Ta
 //import "./index.css"
 import IComp, {TableFormProps} from "../../../IComp";
 import {UploadFile} from "antd/lib/upload/interface";
+import {GoodModel} from "../../good/list/Goodlist";
 
 const {Column} = Table;
 const {Option} = Select;
 
 export interface OrderModel {
-    id?: number,
-    name?: string,
-    sellPoint?: string,
-    price?: number,
-    num?: number,
-    limitNum?: number,
-    image?: string,
+    Id?: number,
     status?: number
+    payment?: number,
+    paymentTime?: string,
+    postFee?: number,
+    createTime?: string,
+    Username?: string,
+    orderItemList?: Array<any>
 }
 
 class GoodForm extends IComp<OrderModel, any, TableFormProps<OrderModel>, {
-    imageModel: UploadFile,
     saveLoading: boolean
 }> {
     constructor(props: TableFormProps<OrderModel>) {
@@ -225,12 +225,12 @@ interface ISate extends TablePageState {
     },
     editModelVisible: boolean,
     formType?: 'edit' | 'add' | 'see',
-    selectModel?: OrderModel
+    selectModel?: OrderModel,
+    goodListVisible:boolean
 }
-
 class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormComponentProps<any>, ISate> {
-    /*public constructor(props: any) {
-        super(props, '', 'good');
+    public constructor(props: any) {
+        super(props, '', 'order');
     }
 
     public state: ISate = {
@@ -239,7 +239,9 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
         pageNumber: 1,
         total: 100,
         tableLoading: false,
-        editModelVisible: false
+        editModelVisible: false,
+        goodListVisible: false,
+
     };
 
     componentWillMount(): void {
@@ -251,12 +253,16 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
         this.setState({
             tableLoading: true
         });
-        this.postJson(`/es/recommend/${this.state.pageNumber}/${this.state.pageSize}`, [1, 2, 3]).then(r => {
+        this.postJson(`/order/getAllOrders/${this.state.pageNumber}/${this.state.pageSize}`, ).then(r => {
+            console.log(' r.list ',r.list);
             this.setSta({
-                list: r[0]
+                list: r.list
+            })
+            this.setState({
+                total: r.total
             })
         }).catch(e => {
-            message.error("商品列表加载失败");
+            message.error("订单列表加载失败");
         }).finally(() => {
             this.setState({
                 tableLoading: false
@@ -300,8 +306,8 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
                         }}/>
                     </div>
                     <div className='search-item'>
-                        <div className='search-item-label'>商品货号：</div>
-                        <Input placeholder="商品货号" value={queryData.goodCode} allowClear onChange={(e) => {
+                        <div className='search-item-label'>订单号：</div>
+                        <Input placeholder="订单号" value={queryData.goodCode} allowClear onChange={(e) => {
                             this.setState({
                                 queryData: {
                                     ...state.queryData,
@@ -342,22 +348,17 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
                        loading={this.state.tableLoading}
                        pagination={false}
                 >
-                    <Column title="编号" dataIndex="id" key="id"/>
-                    <Column title="商品图片" dataIndex="image" key="image"
-                            align='center'
-                            render={
-                                (text, record: OrderModel) => (
-                                    <img src={text} className='good-table-img'/>
-                                )}/>
-                    <Column title="商品名称" dataIndex="name" key="name"/>
-                    <Column title="价格" dataIndex="price" key="price"
+                    <Column title="订单号" dataIndex="id" key="id"/>
+                    <Column title="订单金额" dataIndex="payment" key="payment"/>
+                    <Column title="订单创建时间" dataIndex="paymentTime" key="paymentTime"/>
+                    <Column title="邮费" dataIndex="postFee" key="postFee"
                             render={
                                 (text, record: OrderModel) => (
                                     <div>¥{text}</div>
                                 )
                             }
                     />
-                    <Column title="销量" dataIndex="sellPoint" key="sellPoint"/>
+                    <Column title="购买用户" dataIndex="Username" key="Username"/>
                     <Column title="状态" dataIndex="status" key="status"/>
                     <Column title="操作"
                             width='10rem'
@@ -383,9 +384,12 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
                                     }>编辑</Button>
                                     <Button onClick={
                                         () => {
-
+                                            this.setState({
+                                                goodListVisible: true,
+                                                selectModel: record
+                                            })
                                         }
-                                    }>日志</Button>
+                                    }>查看商品</Button>
                                     <Button type="danger" onClick={
                                         () => {
 
@@ -445,9 +449,42 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
                              }
                 />
             </Modal>
+            <Modal
+                title={'查看商品'}
+                centered
+                visible={this.state.goodListVisible}
+                footer={null}
+                onCancel={() => {
+                    this.setState({
+                        goodListVisible: false
+                    })
+                }}
+            >
+                <Table dataSource={(state.selectModel || {}).orderItemList} bordered
+                       loading={this.state.tableLoading}
+                       pagination={false}
+                >
+                    <Column title="编号" dataIndex="id" key="id"/>
+                    <Column title="商品图片" dataIndex="itemImage" key="image"
+                            align='center'
+                            render={
+                                (text, record: GoodModel) => (
+                                    <img src={text} className='good-table-img'/>
+                                )}/>
+                    <Column title="商品名称" dataIndex="itemName" key="name"/>
+                    <Column title="价格" dataIndex="itemPrice" key="price"
+                            render={
+                                (text, record: GoodModel) => (
+                                    <div>¥{text}</div>
+                                )
+                            }
+                    />
+                </Table>
+
+            </Modal>
         </div>;
     }
-}*/
+}
 }
 export default connect(({order}) => ({
     redux: order

@@ -1,6 +1,7 @@
 package com.hlq.course.serviceImpl;
 
 import com.google.common.collect.Lists;
+import com.hlq.course.common.TreeNode;
 import com.hlq.course.dao.CategoryMapper;
 import com.hlq.course.model.CategoryModel;
 import com.hlq.course.pojo.Category;
@@ -27,27 +28,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private ItemSevice itemSevice;
-
-    /*@Override
-    public List<EasyUITreeNode> getContentCategoryList(long parentId) {
-        //根据parentId查询子节点列表
-        TbContentCategoryExample example = new TbContentCategoryExample();
-        //设置查询条件
-        Criteria criteria = example.createCriteria();
-        criteria.andParentIdEqualTo(parentId);
-        //执行查询
-        List<TbContentCategory> list = contentCategoryMapper.selectByExample(example);
-        List<EasyUITreeNode> resultList = new ArrayList<>();
-
-        for(TbContentCategory tbContentCategory:list) {
-            EasyUITreeNode node = new EasyUITreeNode();
-            node.setId(tbContentCategory.getId());
-            node.setText(tbContentCategory.getName());
-            node.setState(tbContentCategory.getIsParent()?"closed":"open");
-            resultList.add(node);
-        }
-        return resultList;
-    }*/
 
     public List<Category> getCategoryList(){
         List<Category> list = categoryMapper.selectByExample(new CategoryExample());
@@ -96,6 +76,35 @@ public class CategoryServiceImpl implements CategoryService {
             categoryModel.setItems(itemData);
         });
         return categoryModelList;
+    }
+
+    @Override
+    public List<TreeNode> getCategoryNode() {
+        List<TreeNode> nodes;// = Lists.newArrayList();
+        nodes = getCategoryNode(0);
+        return nodes;
+    }
+
+    public List<TreeNode> getCategoryNode(Integer parentId) {
+        //根据parentId查询子节点列表
+        CategoryExample example = new CategoryExample();
+        //设置查询条件
+        example.createCriteria().andParentIdEqualTo(parentId);
+        //执行查询
+        List<Category> list = categoryMapper.selectByExample(example);
+        List<TreeNode> resultList = new ArrayList<>();
+        for(Category category:list) {
+            TreeNode node = new TreeNode();
+            node.setTitle(category.getName());
+            node.setKey(category.getId());
+            node.setValue(category.getId());
+            node.setLeaf(category.getIsParent()?Boolean.FALSE:Boolean.TRUE);
+            if(!node.getLeaf()){
+                node.setChildren(getCategoryNode(node.getKey()));
+            }
+            resultList.add(node);
+        }
+        return resultList;
     }
 
 }

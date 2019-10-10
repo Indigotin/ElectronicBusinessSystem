@@ -39,4 +39,9 @@ public class OrderController {
         List<OrderModel> modelList = orderService.getOrderByUserId(userId);
         return Message.success(modelList);
     }
+    @RequestMapping(value = "/getAllOrders/{current}/{size}")
+    public Message getAllOrders(@PathVariable("current")Integer current,@PathVariable("size")Integer size){
+        PageInfo<OrderModel> modelList = orderService.getAllOrder(current,size);
+        return Message.success(modelList);
+    }
 }

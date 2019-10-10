@@ -75,6 +75,15 @@ public class OrderServiceImpl implements OrderService {
         return models;
     }
 
+    @Override
+    public PageInfo<OrderModel> getAllOrder(Integer current, Integer size) {
+        Page<OrderInfo> page = PageHelper.startPage(current,size,true);
+        orderMapper.selectByExample(new OrderInfoExample());
+        PageInfo pageInfo = page.toPageInfo();
+        pageInfo.setList(toOrderModels(page.getResult()));
+        return pageInfo;
+    }
+
     private List<OrderModel> toOrderModels(List<OrderInfo> orderInfos){
 
         return orderInfos.stream()
@@ -82,7 +91,7 @@ public class OrderServiceImpl implements OrderService {
                 .map(orderInfo -> {
                     OrderModel orderModel = new OrderModel();
                     BeanUtil.copyProperties(orderInfo,orderModel);
-                    orderModel.setUsername(userService.getUsername(orderModel.getUserId()));
+                    orderModel.setUsername(userService.getUsername(orderInfo.getUserId()));
                     orderModel.setOrderItemList(toOrderItemModels(orderItemService.selectByOrderId(orderModel.getId())));
                     return orderModel;
                 })

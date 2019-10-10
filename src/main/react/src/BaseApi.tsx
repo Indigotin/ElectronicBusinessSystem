@@ -26,20 +26,20 @@ class BaseApi<M> implements IApi<M> {
       })
   }
 
-  public get(input: string | RequestInit, param?: {}): Promise<any> {
-    let paramStr: string = (typeof input === typeof '' ? input + "?" : (input as Request).url) + "?";
-    if (param) {
-      for (let key in param) {
-        paramStr += `${key}=${param[key]}&`
-      }
-      paramStr = paramStr.substring(0, paramStr.length - 1);
+    public get(input: string | RequestInit, param?: {}): Promise<any> {
+        let paramStr: string = (typeof input === typeof '' ? input + "?" : (input as Request).url) + "?";
+        if (param) {
+            for (let key in param) {
+                paramStr += `${key}=${param[key]}&`
+            }
+        }
+        paramStr = paramStr.substring(0, paramStr.length - 1);
+        return this.request({
+                url: paramStr,
+                method: 'get'
+            }
+        );
     }
-    return this.request({
-        url: paramStr,
-        method: 'get'
-      }
-    );
-  }
 
   public post(url: string, param?: {}, method?: string): Promise<any> {
     let formData: FormData = new FormData();

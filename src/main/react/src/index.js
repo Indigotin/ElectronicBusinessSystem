@@ -14,6 +14,7 @@ const app = dva({
 // app.model(require('./models/addp').default);
 app.model(require('./models').app);
 app.model(require('./models').Good);
+app.model(require('./models').Order);
 
 // 4. Router
 app.router(require('./routers').default);

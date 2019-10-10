@@ -6,10 +6,11 @@ import * as React from "react";
 import {FormComponentProps} from "antd/lib/form";
 import {connect, SubscriptionAPI} from "dva";
 import Page, {TablePageRedux, TablePageState} from "../../../Page";
-import {Button, Form, Icon, Input, message, Modal, Pagination, Select, Table, Tabs, Upload} from "antd";
+import {Button, Form, Icon, Input, message, Popconfirm, Modal, Pagination, Select, Table, Tabs, Upload} from "antd";
 import "./index.css"
 import IComp, {TableFormProps} from "../../../IComp";
 import {UploadFile} from "antd/lib/upload/interface";
+import {TreeSelect} from 'antd';
 
 const {Column} = Table;
 const {Option} = Select;
@@ -18,6 +19,7 @@ export interface GoodModel {
     id?: number,
     name?: string,
     sellPoint?: string,
+    cid?: number,
     price?: number,
     num?: number,
     limitNum?: number,
@@ -25,30 +27,56 @@ export interface GoodModel {
     status?: number
 }
 
-class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
+interface IState {
     imageModel: UploadFile,
-    saveLoading: boolean
-}> {
+    saveLoading: boolean,
+    model?: GoodModel,
+    treeData?: Array<any>
+}
+
+class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, IState> {
     constructor(props: TableFormProps<GoodModel>) {
         super(props, '/good', "good");
     }
 
-    state = {
+    state: IState = {
         saveLoading: false,
-        imageModel: null
+        imageModel: null,
+        treeData: []
     };
 
     componentDidMount() {
         this.loadFormData();
+        this.loadTreeData();
     }
 
+    public loadTreeData = (): void => {
+
+        this.post(`/category/get`).then(r => {
+            console.log('r', r);
+            this.setState({
+                treeData: r
+            })
+        }).catch(e => {
+            message.error("商品分类加载失败");
+        })
+    };
+
+    onChange = value => {
+        console.log(value);
+        this.setState({
+            model: {
+                ...this.state.model,
+                cid: value
+            },
+        })
+    };
 
     watch = {
         'model': (model) => {
             this.loadFormData();
         }
     };
-
     handleSubmit = (e: any) => {
         let success = () => {
             this.setState({
@@ -59,7 +87,8 @@ class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
                 result = this.post(
                     "/item/add",
                     {
-                        ...this.props.form.getFieldsValue()
+                        ...this.props.form.getFieldsValue(),
+                        image: this.state.imageModel.url
                     }
                 );
             }
@@ -68,7 +97,8 @@ class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
                     '/item/edit',
                     {
                         ...this.props.form.getFieldsValue(),
-                        id: this.props.model.id
+                        id: this.props.model.id,
+                        image: this.state.imageModel.url
                     }
                 );
             }
@@ -88,6 +118,7 @@ class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
             }
         });
     };
+
     public normFile = e => {
         let file = e.file;
         if (file.response && file.response.status && file.response.status === 'done') {
@@ -107,10 +138,13 @@ class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
     };
 
     private loadFormData() {
-        if (!this.props.model) {
+        this.setState({
+            model: this.props.model
+        });
+        if (!this.props.model.id) {
             this.props.form.resetFields();
             this.setState({
-                imageModel: null
+                imageModel: null,
             });
             return;
         }
@@ -127,6 +161,7 @@ class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
         });
         if (this.props.model.image) {
             this.setState({
+                treeValue: this.props.model.cid,
                 imageModel: {
                     uid: this.props.model.id,
                     name: this.props.model.name,
@@ -141,6 +176,7 @@ class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
         const {getFieldDecorator} = this.props.form;
         const state = this.state;
         const props = this.props;
+        const {treeData} = this.state;
         const uploadButton = (
             <div>
                 <Icon type="plus"/>
@@ -148,14 +184,37 @@ class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
             </div>
         );
         return (
-            <Form labelCol={{span: 5}} wrapperCol={{span: 12}} onSubmit={this.handleSubmit}>
-
+            <Form labelCol={{span: 7}} wrapperCol={{span: 12}} onSubmit={this.handleSubmit}>
+                <Form.Item label="商品分类">
+                    {getFieldDecorator('cid', {
+                        rules: [
+                            {required: true, message: '请选择',}
+                        ],
+                    })(<TreeSelect
+                        disabled={props.formType === 'see'}
+                        style={{width: 300}}
+                        // value={this.state.model.cid}
+                        dropdownStyle={{maxHeight: 400, overflow: 'auto'}}
+                        treeData={treeData}
+                        placeholder="Please select"
+                        treeDefaultExpandAll
+                    />)}
+                </Form.Item>
                 <Form.Item label="商品名">
                     {getFieldDecorator('name', {
                         rules: [
                             {required: true, message: '请输入商品名',}
                         ],
                     })(<Input disabled={props.formType === 'see'}/>)}
+                </Form.Item>
+                <Form.Item label="商品卖点">
+                    {getFieldDecorator('sellPoint', {
+                        rules: [
+                            {required: true, message: '请输入商品卖点',}
+                        ],
+                    })(
+                        <Input type="string" disabled={props.formType === 'see'}/>
+                    )}
                 </Form.Item>
                 <Form.Item label="价格">
                     {getFieldDecorator('price', {
@@ -189,7 +248,7 @@ class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
                     })(
                         <Upload
                             disabled={props.formType === 'see'}
-                            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                            action="https://jsonplaceholder.typicode.com/posts/"
                             listType="picture-card"
                             onChange={this.normFile}
                             fileList={state.imageModel ? [state.imageModel] : []}
@@ -242,12 +301,13 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
         pageNumber: 1,
         total: 100,
         tableLoading: false,
-        editModelVisible: false
+        editModelVisible: false,
     };
 
     componentWillMount(): void {
         this.loadTable();
     }
+
 
     public loadTable = (): void => {
         // load data
@@ -255,9 +315,12 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
             tableLoading: true
         });
         this.post(`/item/list/${this.state.pageNumber}/${this.state.pageSize}`).then(r => {
-            console.log('r.list',r.list);
+            console.log('r.list', r.list);
             this.setSta({
                 list: r.list
+            })
+            this.setState({
+                total: r.total
             })
         }).catch(e => {
             message.error("商品列表加载失败");
@@ -396,11 +459,17 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
 
                                         }
                                     }>日志</Button>
-                                    <Button type="danger" onClick={
-                                        () => {
+                                    <Popconfirm placement="top" title="delete" onConfirm={() => {
+                                        // delete ok
+                                        // api delte todo
+                                        this.setSta({
+                                            list: this.props.redux.list.filter(g => g.id !== record.id)
+                                        })
+                                    }} okText="确定"
+                                                cancelText="cancel">
+                                        <Button type="danger">删除</Button>
+                                    </Popconfirm>
 
-                                        }
-                                    }>删除</Button>
                                 </div>
                             )}/>
                 </Table>
@@ -435,7 +504,7 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
                 footer={null}
                 onCancel={this.editHandleCancel.bind(this)}
             >
-                <GoodFormCom model={state.selectModel} formType={state.formType}
+                <GoodFormCom model={{...state.selectModel}} formType={state.formType}
                              cancel={
                                  () => {
                                      this.setState({

@@ -1,11 +1,13 @@
 package com.hlq.course.controller;
 
 import com.hlq.course.common.Message;
+import com.hlq.course.common.TreeNode;
 import com.hlq.course.model.CategoryModel;
 import com.hlq.course.service.CategoryService;
 import com.hlq.course.service.ItemSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,5 +45,11 @@ public class CategoryController {
     @RequestMapping("/category")
     public Message getCategory(){
         return Message.success(categoryService.getCategoryList());
+    }
+
+    @RequestMapping("/get")
+    public Message getCategoryNode(){
+        List<TreeNode> nodes = categoryService.getCategoryNode();
+        return Message.success(nodes);
     }
 }
