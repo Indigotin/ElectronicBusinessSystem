@@ -65,4 +65,18 @@ public class ItemSeviceImpl implements ItemSevice {
         itemMapper.insert(item);
         return Boolean.TRUE;
     }
+
+    @Override
+    public Boolean editItem(Item item) {
+        return itemMapper.updateByPrimaryKeySelective(item) == 1;
+    }
+
+    @Override
+    public PageInfo<Item> getItemList(Integer pageNumber,Integer pageSize) {
+        Page<Item> page = PageHelper.startPage(pageNumber,pageSize,true);
+        itemMapper.selectByExample(new ItemExample());
+        PageInfo pageInfo =  page.toPageInfo();
+        pageInfo.setList(page.getResult());
+        return pageInfo;
+    }
 }

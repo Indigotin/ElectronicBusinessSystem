@@ -4,12 +4,22 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class OrderInfo {
+
     private Integer id;
 
+    /**
+     * 实付金额
+     */
     private BigDecimal payment;
 
+    /**
+     * 支付方式
+     */
     private Integer paymentType;
 
+    /**
+     * 邮费
+     */
     private BigDecimal postFee;
 
     private Integer status;
@@ -20,15 +30,27 @@ public class OrderInfo {
 
     private Date closeTime;
 
-    private Integer addressId;
-
+    /**
+     * 物流名称
+     */
     private String shippingName;
 
+    /**
+     * 物流单号
+     */
     private String shippingCode;
 
+    /**
+     * 买家id
+     */
     private Integer userId;
 
+    /**
+     * 买家留言
+     */
     private String buyerMessage;
+
+    private Integer addressId;
 
     public Integer getId() {
         return id;

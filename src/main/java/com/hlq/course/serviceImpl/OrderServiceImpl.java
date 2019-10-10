@@ -6,18 +6,19 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hlq.course.common.OrderConstant;
 import com.hlq.course.dao.OrderInfoMapper;
+import com.hlq.course.model.OrderItemModel;
 import com.hlq.course.model.OrderModel;
+import com.hlq.course.pojo.Item;
 import com.hlq.course.pojo.OrderInfo;
 import com.hlq.course.pojo.OrderInfoExample;
 import com.hlq.course.pojo.OrderItem;
+import com.hlq.course.service.ItemSevice;
 import com.hlq.course.service.OrderItemService;
 import com.hlq.course.service.OrderService;
+import com.hlq.course.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,6 +33,10 @@ public class OrderServiceImpl implements OrderService {
     private OrderInfoMapper orderMapper;
     @Autowired
     private OrderItemService orderItemService;
+    @Autowired
+    private ItemSevice itemSevice;
+    @Autowired
+    private UserService userService;
 
     @Override
     public Boolean createOrder(OrderModel orderModel) {
@@ -39,9 +44,8 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(OrderConstant.UN_PAID);
         order.setPaymentTime(new Date());
         order.setPaymentType(1);
-        //是否返回主键？???
-        order.setId(orderMapper.insert(order));
-        List<OrderItem> orderItemList = orderModel.getOrderItemList();
+        orderMapper.insert(order);
+        List<OrderItem> orderItemList = toOrderItems(orderModel.getOrderItemList());
         orderItemList.forEach(orderItem -> {
             orderItem.setOrderId(order.getId());
             orderItem.setAddressId(order.getAddressId());
@@ -58,18 +62,8 @@ public class OrderServiceImpl implements OrderService {
         //status未设置条件
         example.createCriteria().andUserIdEqualTo(userId);
         orderMapper.selectByExample(example);
-        PageInfo pageInfo =  page.toPageInfo();
-        pageInfo.setList(page.getResult()
-                .stream()
-                .parallel()
-                .map(orderInfo -> {
-                    OrderModel orderModel = new OrderModel();
-                    BeanUtil.copyProperties(orderInfo,orderModel);
-//                    orderModel.setOrderItemList(orderItemService.selectByOrderId(orderModel.getId()));
-                    orderModel.setOrderItemList(Collections.emptyList());
-                    return orderModel;
-                })
-                .collect(Collectors.toList()));
+        PageInfo pageInfo = page.toPageInfo();
+        pageInfo.setList(toOrderModels(page.getResult()));
         return pageInfo;
     }
 
@@ -77,11 +71,47 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderModel> getOrderByUserId(Integer userId) {
         OrderInfoExample example = new OrderInfoExample();
         example.createCriteria().andUserIdEqualTo(userId);
-        List<OrderModel> models = orderMapper.selectByExample(example).stream().map(model->new ModelMapper().map(model,OrderModel.class)).collect(Collectors.toList());
-        models.forEach(orderModel -> {
-            List<OrderItem> orderDetails = orderItemService.selectByOrderId(orderModel.getId());
-            orderModel.setOrderItemList(orderDetails);
-        });
+        List<OrderModel> models = toOrderModels(orderMapper.selectByExample(example));
         return models;
     }
+
+    private List<OrderModel> toOrderModels(List<OrderInfo> orderInfos){
+
+        return orderInfos.stream()
+                .parallel()
+                .map(orderInfo -> {
+                    OrderModel orderModel = new OrderModel();
+                    BeanUtil.copyProperties(orderInfo,orderModel);
+                    orderModel.setUsername(userService.getUsername(orderModel.getUserId()));
+                    orderModel.setOrderItemList(toOrderItemModels(orderItemService.selectByOrderId(orderModel.getId())));
+                    return orderModel;
+                })
+                .collect(Collectors.toList());
+    }
+
+    private List<OrderItem> toOrderItems(List<OrderItemModel> models){
+        return models.stream()
+                .parallel()
+                .map(model->{
+                    OrderItem orderItem = new OrderItem();
+                    BeanUtil.copyProperties(model,orderItem);
+                    return orderItem;
+                }).collect(Collectors.toList());
+    }
+
+    private List<OrderItemModel> toOrderItemModels(List<OrderItem> orderItems){
+        return orderItems
+                .stream()
+                .parallel()
+                .map(orderItem->{
+                    OrderItemModel model = new OrderItemModel();
+                    BeanUtil.copyProperties(orderItem,model);
+                    Item item = itemSevice.getById(model.getItemId());
+                    model.setItemImage(item.getImage());
+                    model.setItemName(item.getName());
+                    return model;
+                }).collect(Collectors.toList());
+
+    }
+
 }

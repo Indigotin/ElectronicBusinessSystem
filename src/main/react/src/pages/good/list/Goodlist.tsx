@@ -56,15 +56,16 @@ class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
             });
             let result;
             if (this.props.formType === "add") {
-                result = this.postJson(
-                    "/api/item/add",
+                result = this.post(
+                    "/item/add",
                     {
                         ...this.props.form.getFieldsValue()
                     }
                 );
             }
             if (this.props.formType === "edit") {
-                result = this.update(
+                result = this.post(
+                    '/item/edit',
                     {
                         ...this.props.form.getFieldsValue(),
                         id: this.props.model.id
@@ -148,6 +149,7 @@ class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
         );
         return (
             <Form labelCol={{span: 5}} wrapperCol={{span: 12}} onSubmit={this.handleSubmit}>
+
                 <Form.Item label="商品名">
                     {getFieldDecorator('name', {
                         rules: [
@@ -175,7 +177,7 @@ class GoodForm extends IComp<GoodModel, any, TableFormProps<GoodModel>, {
                         >
                             <Option value={1}>上架</Option>
                             <Option value={2}>下架</Option>
-                            <Option value={3}>过期</Option>
+                            {/*<Option value={3}>过期</Option>*/}
                         </Select>
                     )}
                 </Form.Item>
@@ -252,9 +254,10 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
         this.setState({
             tableLoading: true
         });
-        this.postJson(`/es/recommend/${this.state.pageNumber}/${this.state.pageSize}`, [1, 2, 3]).then(r => {
+        this.post(`/item/list/${this.state.pageNumber}/${this.state.pageSize}`).then(r => {
+            console.log('r.list',r.list);
             this.setSta({
-                list: r[0]
+                list: r.list
             })
         }).catch(e => {
             message.error("商品列表加载失败");
@@ -358,8 +361,14 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
                                 )
                             }
                     />
-                    <Column title="销量" dataIndex="sellPoint" key="sellPoint"/>
-                    <Column title="状态" dataIndex="status" key="status"/>
+                    <Column title="卖点" dataIndex="sellPoint" key="sellPoint"/>
+                    <Column title="状态" dataIndex="status" key="status"
+                            render={
+                                (text, record: GoodModel) => (
+                                    <div>{text === 1 ? "上架" : "下架"}</div>
+                                )
+                            }
+                    />
                     <Column title="操作"
                             width='10rem'
                             render={(text, record: GoodModel) => (
@@ -437,6 +446,9 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
                              formSu={
                                  (good) => {
                                      console.log("good:", good)
+                                     this.setState({
+                                         editModelVisible: false
+                                     }, this.loadTable)
                                  }
                              }
                              formFai={

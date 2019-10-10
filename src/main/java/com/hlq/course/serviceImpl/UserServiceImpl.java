@@ -38,4 +38,10 @@ public class UserServiceImpl implements UserService {
     public Boolean register(User user) {
         return userMapper.insert(user)==1;
     }
+
+    @Override
+    public String getUsername(Integer id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        return user.getUsername();
+    }
 }

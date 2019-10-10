@@ -108,7 +108,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.hlq.course.pojo.OrderInfo" >
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id" parameterType="com.hlq.course.pojo.OrderInfo" >
     insert into order_info (id, payment, payment_type, 
       post_fee, status, payment_time, 
       end_time, close_time, address_id, 

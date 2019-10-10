@@ -14,4 +14,6 @@ public interface ItemSevice {
     List<List<Item>> getByIds(List<Integer> itemIds,Integer page,Integer limit);
     PageInfo<Item> getItemsPage(String name,Integer cur,Integer size);
     Boolean addItem(Item item);
+    Boolean editItem(Item item);
+    PageInfo<Item> getItemList(Integer pageNumber,Integer pageSize);
 }

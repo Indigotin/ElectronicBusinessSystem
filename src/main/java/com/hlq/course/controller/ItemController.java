@@ -6,12 +6,11 @@ import com.hlq.course.common.Message;
 import com.hlq.course.pojo.Item;
 import com.hlq.course.service.ItemSevice;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -43,11 +42,26 @@ public class ItemController {
     }
 
     @RequestMapping("/item/add")
-    public Message addItem(@RequestBody Item item){
+    public Message addItem(@Valid @ModelAttribute Item item){
         if(itemSevice.addItem(item)){
             return Message.success();
         }
         return Message.failed();
+    }
+
+    @RequestMapping("/item/edit")
+    public Message editItem(@Valid @ModelAttribute Item item){
+        //item.setId(id);
+        if(itemSevice.editItem(item)){
+            return Message.success();
+        }
+        return Message.failed();
+    }
+
+    @RequestMapping("/item/list/{pageNumber}/{pageSize}")
+    public Message getItemList(@PathVariable("pageNumber") Integer pageNumber,@PathVariable("pageSize")Integer pageSize){
+        PageInfo<Item> items = itemSevice.getItemList(pageNumber,pageSize);
+        return Message.success(items);
     }
 
 }

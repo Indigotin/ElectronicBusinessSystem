@@ -9,4 +9,5 @@ public interface UserService {
     Boolean login(User user);
     User selectByUsername(String username);
     Boolean register(User user);
+    String getUsername(Integer id);
 }
