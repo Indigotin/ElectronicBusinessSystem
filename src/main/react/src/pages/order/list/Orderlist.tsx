@@ -222,8 +222,7 @@ const GoodFormCom = Form.create<TableFormProps<OrderModel>>()(
 
 interface ISate extends TablePageState {
     queryData: {
-        name?: string,
-        goodCode?: string
+        orderCode?: string
     },
     editModelVisible: boolean,
     formType?: 'edit' | 'add' | 'see',
@@ -302,11 +301,11 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
                     </div>
                     <div className='search-item'>
                         <div className='search-item-label'>订单号：</div>
-                        <Input placeholder="订单号" value={queryData.goodCode} allowClear onChange={(e) => {
+                        <Input placeholder="订单号" value={queryData.orderCode} allowClear onChange={(e) => {
                             this.setState({
                                 queryData: {
                                     ...state.queryData,
-                                    goodCode: e.target.value
+                                    orderCode: e.target.value
                                 }
                             })
                         }}/>
@@ -320,7 +319,29 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
                             })
                         }
                     }>重置</Button>
-                    <Button icon="search" type="primary" style={{marginLeft: '1rem'}}>搜索</Button>
+                    <Button icon="search" type="primary" style={{marginLeft: '1rem'}}
+                            onClick={
+                                () => {
+                                    this.setState({
+                                        tableLoading: true
+                                    });
+                                    this.post(`/order/search/${this.state.queryData.orderCode}/${this.state.pageNumber}/${this.state.pageSize}`).then(r => {
+                                        console.log('r.list', r.list);
+                                        this.setSta({
+                                            list: r.list
+                                        })
+                                        this.setState({
+                                            total: r.total
+                                        })
+                                    }).catch(e => {
+                                        message.error("订单列表加载失败");
+                                    }).finally(() => {
+                                        this.setState({
+                                            tableLoading: false
+                                        });
+                                    })
+                                }
+                            }>搜索</Button>
                 </div>
             </div>
             <div className='row-box table-row-box'>

@@ -91,6 +91,19 @@ public class OrderServiceImpl implements OrderService {
         return Boolean.TRUE;
     }
 
+    @Override
+    public PageInfo<OrderModel> getSearchList(String orderId, Integer current, Integer size) {
+        Page<OrderInfo> page = PageHelper.startPage(current, size, true);
+        OrderInfoExample example = new OrderInfoExample();
+        if (orderId != null && !orderId.equals("") && !orderId.equals("undefined")) {
+            example.createCriteria().andIdEqualTo(Integer.valueOf(orderId));
+        }
+        orderMapper.selectByExample(example);
+        PageInfo pageInfo = page.toPageInfo();
+        pageInfo.setList(toOrderModels(page.getResult()));
+        return pageInfo;
+    }
+
     private List<OrderModel> toOrderModels(List<OrderInfo> orderInfos){
 
         return orderInfos.stream()

@@ -64,4 +64,10 @@ public class ItemController {
         return Message.success(items);
     }
 
+    @RequestMapping("/item/search/{name}/{goodCode}/{pageNumber}/{pageSize}")
+    public Message getSearchList(@PathVariable("name")String name,@PathVariable("goodCode")String goodCode,@PathVariable("pageNumber") Integer pageNumber,@PathVariable("pageSize")Integer pageSize){
+        PageInfo<Item> items = itemSevice.getSearchList(name,goodCode,pageNumber,pageSize);
+        return Message.success(items);
+    }
+
 }

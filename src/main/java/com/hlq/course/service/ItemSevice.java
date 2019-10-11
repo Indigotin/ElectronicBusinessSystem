@@ -16,4 +16,5 @@ public interface ItemSevice {
     Boolean addItem(Item item);
     Boolean editItem(Item item);
     PageInfo<Item> getItemList(Integer pageNumber,Integer pageSize);
+    PageInfo<Item> getSearchList(String itemName,String id,Integer pageNumber,Integer pageSize);
 }

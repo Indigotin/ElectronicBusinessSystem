@@ -64,7 +64,7 @@ public class ItemSeviceImpl implements ItemSevice {
     public PageInfo<Item> getItemsPage(String name, Integer cur, Integer size) {
         Page<Item> page = PageHelper.startPage(cur,size,true);
         ItemExample example = new ItemExample();
-        if(name !=null || !name.equals("")){
+        if(name !=null && !name.equals("")){
             example.createCriteria().andNameLike("%"+name+"%");
         }
         itemMapper.selectByExample(example);
@@ -88,6 +88,28 @@ public class ItemSeviceImpl implements ItemSevice {
     public PageInfo<Item> getItemList(Integer pageNumber,Integer pageSize) {
         Page<Item> page = PageHelper.startPage(pageNumber,pageSize,true);
         itemMapper.selectByExample(new ItemExample());
+        PageInfo pageInfo =  page.toPageInfo();
+        pageInfo.setList(page.getResult());
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<Item> getSearchList(String itemName, String id, Integer pageNumber, Integer pageSize) {
+        Page<Item> page = PageHelper.startPage(pageNumber,pageSize,true);
+        ItemExample example = new ItemExample();
+        Boolean nameFlag = itemName!=null && !itemName.equals("") && !itemName.equals("undefined");
+        Boolean idFlag = id != null && !id.equals("") && !id.equals("undefined");
+        if(nameFlag){
+            if(idFlag){
+                example.createCriteria().andNameLike("%"+itemName+"%").andIdEqualTo(Integer.valueOf(id));
+            }else{
+                example.createCriteria().andNameLike("%"+itemName+"%");
+            }
+        }
+        if(idFlag){
+            example.createCriteria().andIdEqualTo(Integer.valueOf(id));
+        }
+        itemMapper.selectByExample(example);
         PageInfo pageInfo =  page.toPageInfo();
         pageInfo.setList(page.getResult());
         return pageInfo;

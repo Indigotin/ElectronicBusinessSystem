@@ -4,7 +4,7 @@
  */
 import * as React from "react";
 import {FormComponentProps} from "antd/lib/form";
-import {connect, SubscriptionAPI} from "dva";
+import {connect} from "dva";
 import Page, {TablePageRedux, TablePageState} from "../../../Page";
 import {Button, Form, Icon, Input, message, Popconfirm, Modal, Pagination, Select, Table, Tabs, Upload} from "antd";
 import "./index.css"
@@ -386,7 +386,29 @@ class GoodList extends Page<GoodModel, TablePageRedux<GoodModel>, FormComponentP
                             })
                         }
                     }>重置</Button>
-                    <Button icon="search" type="primary" style={{marginLeft: '1rem'}}>搜索</Button>
+                    <Button icon="search" type="primary" style={{marginLeft: '1rem'}}
+                            onClick={
+                                () => {
+                                    this.setState({
+                                        tableLoading: true
+                                    });
+                                    this.post(`/item/search/${this.state.queryData.name}/${this.state.queryData.goodCode}/${this.state.pageNumber}/${this.state.pageSize}`).then(r => {
+                                        console.log('r.list', r.list);
+                                        this.setSta({
+                                            list: r.list
+                                        })
+                                        this.setState({
+                                            total: r.total
+                                        })
+                                    }).catch(e => {
+                                        message.error("商品列表加载失败");
+                                    }).finally(() => {
+                                        this.setState({
+                                            tableLoading: false
+                                        });
+                                    })
+                                }
+                            }>搜索</Button>
                 </div>
             </div>
             <div className='row-box i-xy-between'>

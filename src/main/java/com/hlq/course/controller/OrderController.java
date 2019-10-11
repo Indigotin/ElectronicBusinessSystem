@@ -55,4 +55,14 @@ public class OrderController {
         }
         return Message.failed();
     }
+    @RequestMapping("/search/{orderCode}/{pageNumber}/{pageSize}")
+    public Message getSearchList(@PathVariable("orderCode")String orderCode, @PathVariable("pageNumber") Integer pageNumber,@PathVariable("pageSize")Integer pageSize){
+        PageInfo<OrderModel> models = orderService.getSearchList(orderCode,pageNumber,pageSize);
+        return Message.success(models);
+    }
+    @RequestMapping("/search/{pageNumber}/{pageSize}")
+    public Message getList(@PathVariable("pageNumber") Integer pageNumber,@PathVariable("pageSize")Integer pageSize){
+        PageInfo<OrderModel> models = orderService.getSearchList(null,pageNumber,pageSize);
+        return Message.success(models);
+    }
 }
