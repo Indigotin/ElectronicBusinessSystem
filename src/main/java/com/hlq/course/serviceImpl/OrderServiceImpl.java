@@ -84,6 +84,13 @@ public class OrderServiceImpl implements OrderService {
         return pageInfo;
     }
 
+    @Override
+    public Boolean editStatus(OrderModel orderModel) {
+        OrderInfo order = new ModelMapper().map(orderModel, OrderInfo.class);
+        orderMapper.updateByPrimaryKeySelective(order);
+        return Boolean.TRUE;
+    }
+
     private List<OrderModel> toOrderModels(List<OrderInfo> orderInfos){
 
         return orderInfos.stream()

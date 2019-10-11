@@ -1,10 +1,12 @@
 package com.hlq.course.controller;
 
 import com.hlq.course.common.Message;
+import com.hlq.course.model.ItemCartModel;
 import com.hlq.course.pojo.ItemCart;
 import com.hlq.course.pojo.User;
 import com.hlq.course.service.CartService;
 import com.hlq.course.service.UserService;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +40,7 @@ public class CartController {
     }
 
     @RequestMapping("/add")
-    public Message addCart(@RequestBody ItemCart cart){
+    public Message addCart(@RequestBody ItemCartModel cart){
         if(cartService.addCart(cart)){
             return Message.success(Boolean.TRUE);
         }

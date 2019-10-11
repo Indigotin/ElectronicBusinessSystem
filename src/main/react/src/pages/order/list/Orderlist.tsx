@@ -4,19 +4,18 @@
  */
 import * as React from "react";
 import {FormComponentProps} from "antd/lib/form";
-import {connect, SubscriptionAPI} from "dva";
+import {connect} from "dva";
 import Page, {TablePageRedux, TablePageState} from "../../../Page";
 import {Button, Form, Icon, Input, message, Modal, Pagination, Select, Table, Tabs, Upload} from "antd";
 //import "./index.css"
 import IComp, {TableFormProps} from "../../../IComp";
-import {UploadFile} from "antd/lib/upload/interface";
 import {GoodModel} from "../../good/list/Goodlist";
 
 const {Column} = Table;
 const {Option} = Select;
 
 export interface OrderModel {
-    Id?: number,
+    id?: number,
     status?: number
     payment?: number,
     paymentTime?: string,
@@ -55,21 +54,24 @@ class GoodForm extends IComp<OrderModel, any, TableFormProps<OrderModel>, {
                 saveLoading: true
             });
             let result;
-            if (this.props.formType === "add") {
+            /*if (this.props.formType === "add") {
                 result = this.save(
                     {
                         ...this.props.form.getFieldsValue()
                     }
                 );
-            }
+            }*/
+
             if (this.props.formType === "edit") {
-                result = this.update(
+                result = this.post(
+                    '/order/edit',
                     {
                         ...this.props.form.getFieldsValue(),
-                        id: this.props.model.id
+                        id: this.props.model.id,
                     }
                 );
             }
+
             result.then(r => {
                 this.props.formSu && this.props.formSu(this.props.form.getFieldsValue(), r);
             }).catch(e => {
@@ -139,16 +141,16 @@ class GoodForm extends IComp<OrderModel, any, TableFormProps<OrderModel>, {
         const {getFieldDecorator} = this.props.form;
         const state = this.state;
         const props = this.props;
-        const uploadButton = (
+        /*const uploadButton = (
             <div>
                 <Icon type="plus"/>
                 <div className="ant-upload-text">Upload</div>
             </div>
-        );
+        );*/
         return (
-            <Form labelCol={{span: 5}} wrapperCol={{span: 12}} onSubmit={this.handleSubmit}>
-                <Form.Item label="商品名">
-                    {getFieldDecorator('name', {
+            <Form labelCol={{span: 2}} wrapperCol={{span: 12}} onSubmit={this.handleSubmit}>
+                {/*<Form.Item label="订单号">
+                    {getFieldDecorator('orderId', {
                         rules: [
                             {required: true, message: '请输入商品名',}
                         ],
@@ -160,7 +162,7 @@ class GoodForm extends IComp<OrderModel, any, TableFormProps<OrderModel>, {
                             {required: true, message: '请输入商品价格',}
                         ],
                     })(<Input type="number" disabled={props.formType === 'see'}/>)}
-                </Form.Item>
+                </Form.Item>*/}
                 <Form.Item label="状态">
                     {getFieldDecorator('status', {
                         rules: [
@@ -172,13 +174,13 @@ class GoodForm extends IComp<OrderModel, any, TableFormProps<OrderModel>, {
                             optionFilterProp="children"
                             disabled={props.formType === 'see'}
                         >
-                            <Option value={1}>上架</Option>
-                            <Option value={2}>下架</Option>
-                            <Option value={3}>过期</Option>
+                            <Option value={1}>成功</Option>
+                            <Option value={0}>未支付</Option>
+                            <Option value={3}>关闭</Option>
                         </Select>
                     )}
                 </Form.Item>
-                <Form.Item label="商品图片">
+                {/*<Form.Item label="商品图片">
                     {getFieldDecorator('image', {
                         rules: [
                             {required: true, message: '上传商品图片',}
@@ -194,7 +196,7 @@ class GoodForm extends IComp<OrderModel, any, TableFormProps<OrderModel>, {
                             {props.formType === 'see' ? null : uploadButton}
                         </Upload>
                     )}
-                </Form.Item>
+                </Form.Item>*/}
                 <Form.Item wrapperCol={{span: 12, offset: 5}}>
                     <div className='full-width xy-center react'>
                         <Button type="primary" htmlType="submit" loading={this.state.saveLoading}
@@ -229,6 +231,7 @@ interface ISate extends TablePageState {
     goodListVisible:boolean
 }
 class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormComponentProps<any>, ISate> {
+
     public constructor(props: any) {
         super(props, '', 'order');
     }
@@ -296,14 +299,6 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
                 <div className='i-xy-center jf-start search-box'>
                     <div className='search-item'>
                         <div className='search-item-label'>输入搜索：</div>
-                        <Input placeholder="商品名称" value={queryData.name} allowClear onChange={(e) => {
-                            this.setState({
-                                queryData: {
-                                    ...state.queryData,
-                                    name: e.target.value
-                                }
-                            })
-                        }}/>
                     </div>
                     <div className='search-item'>
                         <div className='search-item-label'>订单号：</div>
@@ -328,20 +323,6 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
                     <Button icon="search" type="primary" style={{marginLeft: '1rem'}}>搜索</Button>
                 </div>
             </div>
-            <div className='row-box i-xy-between'>
-                <div>
-                    <Icon type="table"/> 数据列表
-                </div>
-                <Button icon="plus" size='small' onClick={
-                    () => {
-                        this.setState({
-                            editModelVisible: true,
-                            selectModel: null,
-                            formType: "add"
-                        })
-                    }
-                }>添加</Button>
-            </div>
             <div className='row-box table-row-box'>
                 <Table dataSource={redux.list} bordered
                        rowSelection={this.rowSelection}
@@ -349,7 +330,14 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
                        pagination={false}
                 >
                     <Column title="订单号" dataIndex="id" key="id"/>
-                    <Column title="订单金额" dataIndex="payment" key="payment"/>
+                    <Column title="订单金额" dataIndex="payment" key="payment"
+                            render={
+                                (text, record: OrderModel) => (
+                                    <div>¥{text}</div>
+                                )
+                            }
+                    />
+
                     <Column title="订单创建时间" dataIndex="paymentTime" key="paymentTime"/>
                     <Column title="邮费" dataIndex="postFee" key="postFee"
                             render={
@@ -358,21 +346,18 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
                                 )
                             }
                     />
-                    <Column title="购买用户" dataIndex="Username" key="Username"/>
-                    <Column title="状态" dataIndex="status" key="status"/>
+                    <Column title="购买用户" dataIndex="username" key="Username"/>
+                    <Column title="状态" dataIndex="status" key="status"
+                            render={
+                                (text, record: GoodModel) => (
+                                    <div>{text === 0 ? "未支付" : text === 1?"成功":"关闭"}</div>
+                                )
+                            }
+                    />
                     <Column title="操作"
                             width='10rem'
                             render={(text, record: OrderModel) => (
                                 <div className='table-operation'>
-                                    <Button onClick={
-                                        () => {
-                                            this.setState({
-                                                editModelVisible: true,
-                                                formType: "see",
-                                                selectModel: record
-                                            })
-                                        }
-                                    }>查看</Button>
                                     <Button onClick={
                                         () => {
                                             this.setState({
@@ -390,11 +375,11 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
                                             })
                                         }
                                     }>查看商品</Button>
-                                    <Button type="danger" onClick={
+                                    {/*<Button type="danger" onClick={
                                         () => {
 
                                         }
-                                    }>删除</Button>
+                                    }>删除</Button>*/}
                                 </div>
                             )}/>
                 </Table>
@@ -438,8 +423,11 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
                                  }
                              }
                              formSu={
-                                 (good) => {
-                                     console.log("good:", good)
+                                 (order) => {
+                                     console.log("order:", order
+                                     this.setState({
+                                         editModelVisible: false
+                                     }, this.loadTable)
                                  }
                              }
                              formFai={
@@ -485,7 +473,7 @@ class OrderList extends Page<OrderModel, TablePageRedux<OrderModel>, FormCompone
         </div>;
     }
 }
-}
+
 export default connect(({order}) => ({
     redux: order
 }))(OrderList);

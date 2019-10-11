@@ -42,6 +42,19 @@ public class CartServiceImpl implements CartService {
     @Override
     public Boolean addCart(ItemCart cart) {
         User user = userService.selectByUsername(cart.getUsername());
+        Integer userId = user.getId();
+        //查询此用户下购物车所有商品
+        ItemCartExample example = new ItemCartExample();
+        example.createCriteria().andUserIdEqualTo(userId);
+        List<ItemCart> carts = cartMapper.selectByExample(example);
+        for(int i=0;i<carts.size();i++){
+            ItemCart temp = carts.get(i);
+            if(temp.getItemId() == cart.getItemId()){
+                temp.setQuantity(temp.getQuantity()+cart.getQuantity());
+                int res = cartMapper.updateByPrimaryKeySelective(temp);
+                return res > 0 ? Boolean.TRUE : Boolean.FALSE;
+            }
+        }
         Item item = itemSevice.getById(cart.getItemId());
         cart.setUserId(user.getId());
         //0为未购买

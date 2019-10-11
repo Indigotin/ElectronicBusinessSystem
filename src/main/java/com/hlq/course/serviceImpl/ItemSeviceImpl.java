@@ -41,19 +41,32 @@ public class ItemSeviceImpl implements ItemSevice {
     }
 
     @Override
-    public List<List<Item>> getByIds(List<Integer> itemIds, Integer page, Integer limit) {
+    public List<Item> getByIds(List<Integer> itemIds, Integer limit) {
         List<Item> list = Lists.newArrayList();
         itemIds.forEach(id->{
-            list.add(itemMapper.selectByPrimaryKey(id));
+            Integer cid = itemMapper.selectByPrimaryKey(id).getCid();
+            ItemExample example = new ItemExample();
+            example.createCriteria().andCidEqualTo(cid);
+            List<Item> itemTempList = itemMapper.selectByExample(example);
+            for(int i=0;i<5&&list.size()<limit;i++){
+                Item item = itemTempList.get(i);
+                if(item.getId() != id){
+                    list.add(item);
+                }else{
+                    continue;
+                }
+            }
         });
-        return Lists.partition(list,limit);
+        return list;
     }
 
     @Override
     public PageInfo<Item> getItemsPage(String name, Integer cur, Integer size) {
         Page<Item> page = PageHelper.startPage(cur,size,true);
         ItemExample example = new ItemExample();
-        example.createCriteria().andNameLike("%"+name+"%");
+        if(name !=null || !name.equals("")){
+            example.createCriteria().andNameLike("%"+name+"%");
+        }
         itemMapper.selectByExample(example);
         PageInfo pageInfo =  page.toPageInfo();
         pageInfo.setList(page.getResult());

@@ -3,10 +3,12 @@ package com.hlq.course.controller;
 import com.github.pagehelper.PageInfo;
 import com.hlq.course.common.Message;
 import com.hlq.course.model.OrderModel;
+import com.hlq.course.pojo.Item;
 import com.hlq.course.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -43,5 +45,14 @@ public class OrderController {
     public Message getAllOrders(@PathVariable("current")Integer current,@PathVariable("size")Integer size){
         PageInfo<OrderModel> modelList = orderService.getAllOrder(current,size);
         return Message.success(modelList);
+    }
+
+    @PostMapping(path = "/edit")
+    public Message editStatus(@Valid @ModelAttribute OrderModel orderModel) {
+        Boolean res = orderService.editStatus(orderModel);
+        if (res) {
+            return Message.success();
+        }
+        return Message.failed();
     }
 }

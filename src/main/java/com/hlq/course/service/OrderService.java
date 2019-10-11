@@ -13,4 +13,5 @@ public interface OrderService {
     PageInfo<OrderModel> getPageByUserId(Integer userId, Integer status, Integer current, Integer size);
     List<OrderModel> getOrderByUserId(Integer userIdr);
     PageInfo<OrderModel> getAllOrder(Integer current, Integer size);
+    Boolean editStatus(OrderModel orderModel);
 }

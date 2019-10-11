@@ -30,14 +30,14 @@ public class ItemController {
         return Message.failed();
     }
 
-    @RequestMapping("/es/recommend/{page}/{limit}")
-    public Message getRecommed(@RequestBody List<Integer> itemIds, @PathVariable("page")Integer page, @PathVariable("limit")Integer limit){
-        return Message.success(itemSevice.getByIds(itemIds,page,limit));
+    @RequestMapping("/es/recommend/{limit}")
+    public Message getRecommed(@RequestBody List<Integer> itemIds, @PathVariable("limit")Integer limit){
+        return Message.success(itemSevice.getByIds(itemIds,limit));
     }
 
-    @RequestMapping("/item/search/{searchValue}")
-    public Message search(@PathVariable("searchValue")String searchValue,Integer page){
-        PageInfo<Item> list = itemSevice.getItemsPage(searchValue,1,30);
+    @RequestMapping("/item/search/{searchValue}/{page}/{size}")
+    public Message search(@PathVariable("searchValue")String searchValue,@PathVariable("page")Integer page,@PathVariable("size")Integer size){
+        PageInfo<Item> list = itemSevice.getItemsPage(searchValue,page,size);
         return Message.success(list);
     }
 
