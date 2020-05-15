@@ -1,5 +1,6 @@
 package com.hlq.course.serviceImpl;
 
+import com.hlq.course.common.SendMessage;
 import com.hlq.course.dao.ItemCartMapper;
 import com.hlq.course.pojo.Item;
 import com.hlq.course.pojo.ItemCart;
@@ -30,6 +31,8 @@ public class CartServiceImpl implements CartService {
         ItemCartExample example = new ItemCartExample();
         example.createCriteria().andUserIdEqualTo(userId);
         List<ItemCart> list = cartMapper.selectByExample(example);
+        SendMessage smg = new SendMessage();
+        smg.sendMessageCart(list,userId);
         return list;
     }
 

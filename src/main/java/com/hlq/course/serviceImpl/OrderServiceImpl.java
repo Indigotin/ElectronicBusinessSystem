@@ -5,6 +5,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hlq.course.common.OrderConstant;
+import com.hlq.course.common.SendMessage;
 import com.hlq.course.dao.OrderInfoMapper;
 import com.hlq.course.model.OrderItemModel;
 import com.hlq.course.model.OrderModel;
@@ -52,6 +53,8 @@ public class OrderServiceImpl implements OrderService {
             orderItem.setUserId(order.getUserId());
         });
         orderItemService.saveBatch(orderItemList);
+        SendMessage smg = new SendMessage();
+        smg.sendOrderMessage(orderItemList);
         return Boolean.TRUE;
     }
 

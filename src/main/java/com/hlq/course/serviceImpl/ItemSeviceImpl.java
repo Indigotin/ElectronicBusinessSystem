@@ -1,9 +1,11 @@
 package com.hlq.course.serviceImpl;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
+import com.hlq.course.common.SendMessage;
 import com.hlq.course.dao.ItemMapper;
 import com.hlq.course.pojo.Item;
 import com.hlq.course.pojo.ItemExample;
@@ -76,6 +78,9 @@ public class ItemSeviceImpl implements ItemSevice {
     @Override
     public Boolean addItem(Item item) {
         itemMapper.insert(item);
+        SendMessage smg = new SendMessage();
+        String result = smg.sendMessageAddItem(JSON.toJSONString(item));
+        System.out.println("result:"+result);
         return Boolean.TRUE;
     }
 
