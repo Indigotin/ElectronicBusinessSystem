@@ -3,8 +3,6 @@ package com.hlq.course.controller;
 import com.google.common.collect.Lists;
 import com.hlq.course.common.Message;
 import com.hlq.course.model.PanelModel;
-import com.hlq.course.pojo.Item;
-import com.hlq.course.service.ItemSevice;
 import com.hlq.course.service.PanelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

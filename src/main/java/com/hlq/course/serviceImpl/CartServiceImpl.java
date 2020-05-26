@@ -1,13 +1,12 @@
 package com.hlq.course.serviceImpl;
 
-import com.hlq.course.common.SendMessage;
 import com.hlq.course.dao.ItemCartMapper;
 import com.hlq.course.pojo.Item;
 import com.hlq.course.pojo.ItemCart;
 import com.hlq.course.pojo.ItemCartExample;
 import com.hlq.course.pojo.User;
 import com.hlq.course.service.CartService;
-import com.hlq.course.service.ItemSevice;
+import com.hlq.course.service.ItemService;
 import com.hlq.course.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,15 +23,13 @@ public class CartServiceImpl implements CartService {
     @Autowired
     private UserService userService;
     @Autowired
-    private ItemSevice itemSevice;
+    private ItemService itemService;
 
     @Override
     public List<ItemCart> getCartListByUserId(Integer userId) {
         ItemCartExample example = new ItemCartExample();
         example.createCriteria().andUserIdEqualTo(userId);
         List<ItemCart> list = cartMapper.selectByExample(example);
-        SendMessage smg = new SendMessage();
-        smg.sendMessageCart(list,userId);
         return list;
     }
 
@@ -58,7 +55,7 @@ public class CartServiceImpl implements CartService {
                 return res > 0 ? Boolean.TRUE : Boolean.FALSE;
             }
         }
-        Item item = itemSevice.getById(cart.getItemId());
+        Item item = itemService.getById(cart.getItemId());
         cart.setUserId(user.getId());
         //0为未购买
         cart.setItemCartStatus(0);

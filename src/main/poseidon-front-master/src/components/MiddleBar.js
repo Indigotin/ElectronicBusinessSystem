@@ -8,6 +8,7 @@ import { ItemCartModel } from '../model/ItemCatModel';
 import { ItemModel } from '../model/ItemModel';
 import search from '../img/search.png';
 import PropTypes from 'prop-types';
+import logo from '../img/b.jpg';
 
 class MiddleBar extends Component {
   static contextTypes = {
@@ -138,7 +139,7 @@ class MiddleBar extends Component {
         <div className='i-xy-between jf-start' style={{ width: '1226px' }}>
           <div className="site-middlebar i-xy-between full-width">
             <div className='i-xy-between'>
-              <a href="/"><img className="logo-icon" src="" alt='' /></a>
+              <a href="/"><img className="logo-icon" src={logo} alt=''/></a>
               <div className='list3 i-xy-center' onMouseLeave={() => {
                 if (state.navShowState === 1) {
                   this.setState({

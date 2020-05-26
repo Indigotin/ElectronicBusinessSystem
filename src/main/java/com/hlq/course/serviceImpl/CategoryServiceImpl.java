@@ -8,7 +8,7 @@ import com.hlq.course.pojo.Category;
 import com.hlq.course.pojo.CategoryExample;
 import com.hlq.course.pojo.Item;
 import com.hlq.course.service.CategoryService;
-import com.hlq.course.service.ItemSevice;
+import com.hlq.course.service.ItemService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryMapper categoryMapper;
 
     @Autowired
-    private ItemSevice itemSevice;
+    private ItemService itemService;
 
     public List<Category> getCategoryList(){
         List<Category> list = categoryMapper.selectByExample(new CategoryExample());
@@ -44,7 +44,7 @@ public class CategoryServiceImpl implements CategoryService {
         categoryModelList.forEach(categoryModel -> {
             List<Integer> ids = getChildCatIds(categoryModel.getId());
             ids.add(categoryModel.getId());
-            List<Item> itemData = itemSevice.getByCatIds(ids, itemLimit);
+            List<Item> itemData = itemService.getByCatIds(ids, itemLimit);
             categoryModel.setItems(itemData);
         });
         return Lists.partition(categoryModelList,2);
@@ -72,7 +72,7 @@ public class CategoryServiceImpl implements CategoryService {
         categoryModelList.forEach(categoryModel -> {
             List<Integer> ids = getChildCatIds(categoryModel.getId());
             ids.add(categoryModel.getId());
-            List<Item> itemData = itemSevice.getByCatIds(ids, itemLimit);
+            List<Item> itemData = itemService.getByCatIds(ids, itemLimit);
             categoryModel.setItems(itemData);
         });
         return categoryModelList;

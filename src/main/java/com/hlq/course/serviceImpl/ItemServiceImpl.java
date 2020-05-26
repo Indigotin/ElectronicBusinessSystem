@@ -4,12 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.google.common.collect.Lists;
 import com.hlq.course.common.SendMessage;
 import com.hlq.course.dao.ItemMapper;
+import com.hlq.course.model.ItemCartModel;
 import com.hlq.course.pojo.Item;
 import com.hlq.course.pojo.ItemExample;
-import com.hlq.course.service.ItemSevice;
+import com.hlq.course.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ import java.util.List;
  * Created by Len on 2019-09-29
  */
 @Service
-public class ItemSeviceImpl implements ItemSevice {
+public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private ItemMapper itemMapper;
@@ -43,7 +43,40 @@ public class ItemSeviceImpl implements ItemSevice {
     }
 
     @Override
-    public List<Item> getByIds(List<Integer> itemIds, Integer limit) {
+    public List<Item> getRecommeds(List<ItemCartModel> itemCarts, Integer limit) {
+        List<Item> list = new ArrayList<>();
+        SendMessage smg = new SendMessage();
+        String ids = smg.sendMessageCart(itemCarts);
+        //提取itemid
+        String[] strs = ids.substring(1,ids.length()-1).split("[,]");
+        /*for(int i=0;i<strs.length;i++)
+            System.out.println(strs[i]);*/
+        if(strs != null)
+        //封装item 限制limit
+            for(int i=0;i<strs.length&&i<limit;i++){
+                int id = Integer.valueOf(strs[i].trim());
+                list.add(itemMapper.selectByPrimaryKey(id));
+            }
+        //strs=null
+        itemCarts.forEach(temp->{
+            Integer cid = itemMapper.selectByPrimaryKey(temp.getItemId()).getCid();
+            ItemExample example = new ItemExample();
+            example.createCriteria().andCidEqualTo(cid);
+            List<Item> itemTempList = itemMapper.selectByExample(example);
+            for(int i=0;i<2&&list.size()<limit&&i<itemTempList.size();i++){
+                Item item = itemTempList.get(i);
+                if(item.getId() != temp.getItemId()){
+                    list.add(item);
+                }else{
+                    continue;
+                }
+            }
+        });
+        //返回
+        return list;
+    }
+
+    /*public List<Item> getByIds(List<Integer> itemIds, Integer limit) {
         List<Item> list = Lists.newArrayList();
         itemIds.forEach(id->{
             Integer cid = itemMapper.selectByPrimaryKey(id).getCid();
@@ -60,7 +93,7 @@ public class ItemSeviceImpl implements ItemSevice {
             }
         });
         return list;
-    }
+    }*/
 
     @Override
     public PageInfo<Item> getItemsPage(String name, Integer cur, Integer size) {

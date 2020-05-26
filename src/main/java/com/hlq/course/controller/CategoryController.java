@@ -4,10 +4,9 @@ import com.hlq.course.common.Message;
 import com.hlq.course.common.TreeNode;
 import com.hlq.course.model.CategoryModel;
 import com.hlq.course.service.CategoryService;
-import com.hlq.course.service.ItemSevice;
+import com.hlq.course.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +21,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
     @Autowired
-    private ItemSevice productSevice;
+    private ItemService productSevice;
 
     @RequestMapping(path = "/ro/{catLimit}/{itemLimit}")
     public Message rootCatWithProducts(Integer catLimit,Integer itemLimit) {

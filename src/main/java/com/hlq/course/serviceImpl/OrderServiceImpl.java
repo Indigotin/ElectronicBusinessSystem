@@ -13,7 +13,7 @@ import com.hlq.course.pojo.Item;
 import com.hlq.course.pojo.OrderInfo;
 import com.hlq.course.pojo.OrderInfoExample;
 import com.hlq.course.pojo.OrderItem;
-import com.hlq.course.service.ItemSevice;
+import com.hlq.course.service.ItemService;
 import com.hlq.course.service.OrderItemService;
 import com.hlq.course.service.OrderService;
 import com.hlq.course.service.UserService;
@@ -35,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderItemService orderItemService;
     @Autowired
-    private ItemSevice itemSevice;
+    private ItemService itemService;
     @Autowired
     private UserService userService;
 
@@ -138,7 +138,7 @@ public class OrderServiceImpl implements OrderService {
                 .map(orderItem->{
                     OrderItemModel model = new OrderItemModel();
                     BeanUtil.copyProperties(orderItem,model);
-                    Item item = itemSevice.getById(model.getItemId());
+                    Item item = itemService.getById(model.getItemId());
                     model.setItemImage(item.getImage());
                     model.setItemName(item.getName());
                     return model;

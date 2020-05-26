@@ -27,8 +27,8 @@ class Cart extends Component {
   async componentDidMount() {
     const {curUser} = this.state;
     const cartsData = await fetchCartByUserName(curUser);
-    const itemIds = cartsData.map(cart => cart.itemId);
-    let msg = await fetchRecommendItems(itemIds, 10);
+    //const itemIds = cartsData.map(cart => cart.itemId);
+    let msg = await fetchRecommendItems(cartsData, 10);
     this.setState({
       carts: cartsData,
       fetching: false,

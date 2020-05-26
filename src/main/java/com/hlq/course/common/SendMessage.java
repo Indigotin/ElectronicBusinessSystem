@@ -1,6 +1,7 @@
 package com.hlq.course.common;
 
 import com.alibaba.fastjson.JSON;
+import com.hlq.course.model.ItemCartModel;
 import com.hlq.course.model.TempItemCart;
 import com.hlq.course.model.TempOrderItem;
 import com.hlq.course.pojo.Item;
@@ -18,6 +19,42 @@ import java.util.List;
  * Created by Len on 2020-05-14
  */
 public class SendMessage {
+
+    //test粘包问题
+    /*public String sendMessage(String data) {
+        String ip = "129.204.184.133";        // 设置发送地址和端口号  129.204.184.133
+        int port = 9999;
+        Socket socket = null;
+        try {
+            // 连接服务器
+            socket = new Socket(ip, port);
+            System.out.println("server is start ......");
+            //输出流
+            OutputStream Out = socket.getOutputStream();
+            //header
+            int length = String.valueOf(data.length()).length();
+            String header = String.valueOf(data.length());
+            while (length < 5){
+                header = header+" ";
+                length++;
+            }
+            header = header+"ADD  ";
+            Out.write(header.getBytes());//发送数据头 约定长度10
+            Out.write(data.getBytes()); //发送数据
+            //输入流
+            BufferedReader In = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            String result = In.readLine();
+            System.out.println(result);
+            return result;
+
+        } catch(UnknownHostException e) {
+            e.printStackTrace();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return "defeat";
+    }*/
+
     // 传递信息
     public String sendMessageAddItem(String data) {
         String ip = "129.204.184.133";        // 设置发送地址和端口号  129.204.184.133
@@ -29,21 +66,18 @@ public class SendMessage {
             System.out.println("server is start ......");
             //输出流
             OutputStream Out = socket.getOutputStream();
-            Out.write("START".getBytes()); //发送数据
-            //Out.flush();
-            Thread.sleep(20);
-            Out.write("ADD".getBytes());
-            //Out.flush();
-            Thread.sleep(20);
+            //header
+            int length = String.valueOf(data.length()).length();
+            String header = String.valueOf(data.length());
+            while (length < 5){
+                header = header+" ";
+                length++;
+            }
+            header = header+"ADD  ";
+            Out.write(header.getBytes());//发送数据头 约定长度10
             Out.write(data.getBytes()); //发送数据
-            /*//Out.flush();
-            Thread.sleep(30);
-            Out.write("END".getBytes());
-            //Out.flush();
-            Thread.sleep(30);*/
             //输入流
             BufferedReader In = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-           // DataInputStream In = new DataInputStream(socket.getInputStream());
             String result = In.readLine();
             System.out.println(result);
             return result;
@@ -52,58 +86,47 @@ public class SendMessage {
             e.printStackTrace();
         } catch(IOException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
         return "defeat";
     }
 
-    public String sendMessageCart(List<ItemCart> clist,Integer userId){
+    public String sendMessageCart(List<ItemCartModel> clist){
         String ip = "129.204.184.133";        // 设置发送地址和端口号  129.204.184.133
         int port = 9999;
         Socket socket = null;
         List<TempItemCart> list = new ArrayList<>();
-        for (ItemCart itCart:clist) {
+        for (ItemCartModel itCart:clist) {
             TempItemCart t =  new TempItemCart();
             t.setItemId(itCart.getItemId());
             t.setUserId(itCart.getUserId());
             list.add(t);
         }
-        //String data = JSON.toJSONString(list);
         System.out.println("clist"+JSON.toJSONString(list));
+        String data = JSON.toJSONString(list);
         try {
             // 连接服务器
             socket = new Socket(ip, port);
             System.out.println("server is start ......");
             //输出流
             OutputStream Out = socket.getOutputStream(); // 发送数据
-            //DataOutputStream Out = new DataOutputStream(socket.getOutputStream());
-            Out.write("START".getBytes()); //发送数据
-            Out.flush();
-            Thread.sleep(20);
-            Out.write("CART".getBytes());
-            Thread.sleep(20);
-            Out.flush();
-            for (TempItemCart t:list) {
-                Out.write(JSON.toJSONString(t).getBytes());
-                Thread.sleep(20);
-                Out.flush();
+            //header
+            int length = String.valueOf(data.length()).length();
+            String header = String.valueOf(data.length());
+            while (length < 5){
+                header = header+" ";
+                length++;
             }
-            Out.write("END".getBytes());
-            Out.flush();
-            Thread.sleep(20);
+            header = header+"CART ";
+            Out.write(header.getBytes());//发送数据头 约定长度10
+            Out.write(data.getBytes());
             //输入流
             BufferedReader In = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            // DataInputStream In = new DataInputStream(socket.getInputStream());
             String result = In.readLine();
             System.out.println(result);
             return result;
-
         } catch(UnknownHostException e) {
             e.printStackTrace();
         } catch(IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return "defeat";
@@ -121,7 +144,7 @@ public class SendMessage {
             t.setUserId(orItem.getUserId());
             list.add(t);
         }
-        //String data = JSON.toJSONString(list);
+        String data = JSON.toJSONString(list);
         System.out.println("olist"+JSON.toJSONString(list));
         try {
             // 连接服务器
@@ -129,24 +152,18 @@ public class SendMessage {
             System.out.println("server is start ......");
             //输出流
             OutputStream Out = socket.getOutputStream(); // 发送数据
-            //DataOutputStream Out = new DataOutputStream(socket.getOutputStream());
-            Out.write("START".getBytes()); //发送数据
-            Out.flush();
-            Thread.sleep(20);
-            Out.write("ORDER".getBytes());
-            Thread.sleep(20);
-            Out.flush();
-            for (TempOrderItem t:list) {
-                Out.write(JSON.toJSONString(t).getBytes());
-                Thread.sleep(20);
-                Out.flush();
+            //header
+            int length = String.valueOf(data.length()).length();
+            String header = String.valueOf(data.length());
+            while (length < 5){
+                header = header+" ";
+                length++;
             }
-            Out.write("END".getBytes());
-            Out.flush();
-            Thread.sleep(20);
+            header = header+"ORDER";
+            Out.write(header.getBytes());//发送数据头 约定长度10
+            Out.write(data.getBytes()); //发送数据
             //输入流
             BufferedReader In = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            // DataInputStream In = new DataInputStream(socket.getInputStream());
             String result = In.readLine();
             System.out.println(result);
             return result;
@@ -154,8 +171,6 @@ public class SendMessage {
         } catch(UnknownHostException e) {
             e.printStackTrace();
         } catch(IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return "defeat";
@@ -200,8 +215,8 @@ public class SendMessage {
         item.setSellPoint("iiiii");
         item.setPrice(BigDecimal.valueOf(1000L));
         SendMessage smg = new SendMessage();
-        String result = smg.sendMessageAddItem(JSON.toJSONString(item));
-        System.out.println("result:"+result);
+        //String result = smg.sendMessage(JSON.toJSONString(item));
+        //System.out.println("result:"+result);
     }
 
     /*public static void main(String[] args){
